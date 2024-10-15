@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clients</title>
+    <script defer src="/src/js/main.js"></script>
+    <link rel="stylesheet" href="/src/css/output.css" />
+  </head>
+  <body>
+    <main>
+      <div class="relative flex transition-all">
+        <!-- Sidebar -->
+        <div
+          class="lg:w-[260px] overflow-hidden fixed lg:sticky top-0 lg:left-0 left-full h-screen z-50"
+          id="sidebar"
+        >
+          <div
+            class="w-full h-screen bg-sidebar rounded-tr-[32px] rounded-br-[32px] p-6 py-16"
+          >
+            <img
+              src="/src/assets/images/logo.png"
+              class="sidebar_logo"
+              alt=""
+            />
+
+            <button
+              type="button"
+              id="sidebar_toggle"
+              class="w-7 h-7 rounded-full bg-white border border-gray1 justify-center items-center lg:flex hidden absolute -right-2.5 top-6 shadow-xl"
+            >
+              <img src="/src/assets/icons/arrow-left.svg" alt="" />
+            </button>
+            <button
+              type="button"
+              id="sidebar_toggle"
+              class="absolute flex items-center justify-center bg-white border rounded-full shadow-xl w-7 h-7 border-gray1 lg:hidden right-5 top-5"
+              onclick="closeSidebarInMobile()"
+            >
+              <img src="/src/assets/icons/arrow-left.svg" alt="" />
+            </button>
+
+            <div class="flex flex-col gap-4 mt-10">
+              <!-- Dashboard -->
+              <a
+                href="/index.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <img src="/src/assets/icons/dashboardIcon.svg" alt="" />
+                <h3 class="text-sm sidebar_page_title" id="sidebar-page-label">
+                  Dashboard
+                </h3>
+              </a>
+
+              <!-- Dispatcher -->
+              <a
+                href="/dispatcher.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.31835 7.78248C5.12418 -0.155852 16.885 -0.146685 18.6817 7.79165C19.7359 12.4483 16.8392 16.39 14.3 18.8283C12.4575 20.6066 9.54252 20.6066 7.69085 18.8283C5.16085 16.39 2.26418 12.4391 3.31835 7.78248Z"
+                    stroke="#fff"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M12.8334 11.88L9.20337 8.25"
+                    stroke="#fff"
+                    stroke-width="1.5"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M12.7966 8.28668L9.16663 11.9167"
+                    stroke="#fff"
+                    stroke-width="1.5"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+
+                <h3 class="text-sm sidebar_page_title">Dispatcher</h3>
+              </a>
+
+              <!-- Operators -->
+              <div class="relative">
+                <button
+                  class="flex items-center justify-between w-full gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+                  id="sidebar_operators"
+                >
+                  <div class="flex gap-4">
+                    <img src="/src/assets/icons/operatorsIcon.svg" alt="" />
+                    <h3
+                      class="text-sm sidebar_page_title"
+                      id="sidebar-page-label"
+                    >
+                      Operators
+                    </h3>
+                  </div>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="sidebar_page_title"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M2.69041 4.6037C2.49712 4.80251 2.49712 5.12485 2.69041 5.32366L6.65 9.39639C6.74283 9.49186 6.86872 9.5455 6.99999 9.5455C7.13125 9.5455 7.25715 9.49186 7.34997 9.39639L11.3096 5.32366C11.5029 5.12485 11.5029 4.80251 11.3096 4.6037C11.1163 4.40489 10.8029 4.40489 10.6096 4.6037L6.99999 8.31644L3.39037 4.6037C3.19708 4.40489 2.8837 4.40489 2.69041 4.6037Z"
+                      fill="#fff"
+                    />
+                  </svg>
+                </button>
+
+                <!-- opt -->
+                <div class="flex-col" id="sidebar_operators_list">
+                  <a
+                    href="/operators.html"
+                    class="relative flex items-center justify-start h-10 gap-4 p-4 text-white bg-transparent rounded-full after:w-[1px] after:h-8 after:bg-white after:absolute after:left-[22px] after:top-6"
+                  >
+                    <span
+                      class="relative flex w-[14px] h-[14px] bg-white rounded-full"
+                    ></span>
+                    <h3 class="text-sm sidebar-page-label">Operators</h3>
+                  </a>
+                  <a
+                    href="/operators-billings.html"
+                    class="relative flex items-center justify-start h-10 gap-4 p-4 text-white bg-transparent rounded-full after:w-[1px] after:h-8 after:bg-white after:absolute after:left-[22px] after:top-6"
+                  >
+                    <span
+                      class="relative flex w-[14px] h-[14px] bg-blue1 z-10 rounded-full"
+                    ></span>
+                    <h3 class="text-sm sidebar-page-label">
+                      Operators Billings
+                    </h3>
+                  </a>
+                  <a
+                    href="/permits.html"
+                    class="flex items-center justify-start h-10 gap-4 p-4 text-white bg-transparent rounded-full"
+                  >
+                    <span
+                      class="relative flex w-[14px] h-[14px] bg-white rounded-full"
+                    ></span>
+                    <h3 class="text-sm sidebar-page-label">Permits</h3>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Clients -->
+              <a
+                href="/clients.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <!-- Icon -->
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16.5 6.56301C16.445 6.55384 16.3808 6.55384 16.3258 6.56301C15.0608 6.51718 14.0525 5.48134 14.0525 4.19801C14.0525 2.88718 15.1067 1.83301 16.4175 1.83301C17.7283 1.83301 18.7825 2.89634 18.7825 4.19801C18.7733 5.48134 17.765 6.51718 16.5 6.56301Z"
+                    stroke="#fff"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M15.5558 13.2365C16.8117 13.4473 18.1958 13.2273 19.1675 12.5765C20.46 11.7148 20.46 10.3032 19.1675 9.44149C18.1867 8.79066 16.7842 8.57065 15.5283 8.79065"
+                    stroke="#fff"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M5.47244 6.56301C5.52744 6.55384 5.59161 6.55384 5.64661 6.56301C6.91161 6.51718 7.91994 5.48134 7.91994 4.19801C7.91994 2.88718 6.86578 1.83301 5.55494 1.83301C4.24411 1.83301 3.18994 2.89634 3.18994 4.19801C3.19911 5.48134 4.20744 6.51718 5.47244 6.56301Z"
+                    stroke="#fff"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M6.41661 13.2365C5.16078 13.4473 3.77661 13.2273 2.80495 12.5765C1.51245 11.7148 1.51245 10.3032 2.80495 9.44149C3.78578 8.79066 5.18828 8.57065 6.44411 8.79065"
+                    stroke="#fff"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M11 13.4107C10.945 13.4015 10.8808 13.4015 10.8258 13.4107C9.56082 13.3648 8.55249 12.329 8.55249 11.0457C8.55249 9.73483 9.60666 8.68066 10.9175 8.68066C12.2283 8.68066 13.2825 9.744 13.2825 11.0457C13.2733 12.329 12.265 13.374 11 13.4107Z"
+                    stroke="#fff"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M8.33253 16.2981C7.04003 17.1598 7.04003 18.5714 8.33253 19.4331C9.7992 20.4139 12.2009 20.4139 13.6675 19.4331C14.96 18.5714 14.96 17.1598 13.6675 16.2981C12.21 15.3264 9.7992 15.3264 8.33253 16.2981Z"
+                    stroke="#fff"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+
+                <h3 class="text-sm sidebar_page_title">Clients</h3>
+              </a>
+
+              <!-- Users -->
+              <a
+                href="/users.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <img src="/src/assets/icons/usersIcon.svg" alt="" />
+                <h3 class="text-sm sidebar_page_title">Users</h3>
+              </a>
+
+              <!-- Vehicles -->
+              <a
+                href="/vehicles.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <img src="/src/assets/icons/vehiclesIcon.svg" alt="" />
+                <h3 class="text-sm sidebar_page_title">Vehicles</h3>
+              </a>
+
+              <!-- Orders -->
+              <a
+                href="/orders.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <img src="/src/assets/icons/ordersIcon.svg" alt="" />
+                <h3 class="text-sm sidebar_page_title">Orders</h3>
+              </a>
+
+              <!-- Reports -->
+              <a
+                href="/reports.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <img src="/src/assets/icons/reportsIcon.svg" alt="" />
+                <h3 class="text-sm sidebar_page_title">Reports</h3>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Operators billing -->
+        <div class="w-full">
+          <!-- Navbar -->
+          <div
+            class="h-[4.7rem] w-full flex justify-between border-b border-b-gray1 bg-gray2 items-center px-6"
+          >
+            <div class="flex items-center gap-2">
+              <button
+                type="button"
+                class="flex w-10 h-10 p-3 border rounded-lg lg:hidden"
+                onclick="openSidebarInMobile()"
+              >
+                <img src="/src/assets/icons/menu-toggle.svg" alt="" />
+              </button>
+              <h2 class="text-sm lg:text-2xl">Operators billing</h2>
+            </div>
+
+            <div class="flex items-center gap-2 md:gap-5">
+              <!-- Search -->
+              <div
+                class="flex items-center justify-center w-10 h-10 gap-3 bg-white border rounded-full md:w-auto md:h-auto md:p-2 md:px-4 border-gray1"
+              >
+                <!-- Icon -->
+                <svg
+                  width="22"
+                  height="23"
+                  viewBox="0 0 22 23"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M10.5416 3.02075C6.11186 3.02075 2.52081 6.6118 2.52081 11.0416C2.52081 15.4714 6.11186 19.0624 10.5416 19.0624C14.9714 19.0624 18.5625 15.4714 18.5625 11.0416C18.5625 6.6118 14.9714 3.02075 10.5416 3.02075ZM1.14581 11.0416C1.14581 5.85241 5.35247 1.64575 10.5416 1.64575C15.7308 1.64575 19.9375 5.85241 19.9375 11.0416C19.9375 16.2308 15.7308 20.4374 10.5416 20.4374C5.35247 20.4374 1.14581 16.2308 1.14581 11.0416Z"
+                    fill="#A30133"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M17.8472 18.3471C18.1157 18.0786 18.551 18.0786 18.8194 18.3471L20.6528 20.1804C20.9213 20.4489 20.9213 20.8842 20.6528 21.1527C20.3843 21.4212 19.949 21.4212 19.6805 21.1527L17.8472 19.3194C17.5787 19.0509 17.5787 18.6156 17.8472 18.3471Z"
+                    fill="#A30133"
+                  />
+                </svg>
+
+                <!-- Input -->
+                <input
+                  type="text"
+                  placeholder="Search for anything..."
+                  class="hidden outline-none md:flex"
+                />
+              </div>
+
+              <!-- Message Icon -->
+              <button
+                type="button"
+                class="flex items-center justify-center w-10 h-10 bg-white border rounded-full md:w-12 md:h-12 border-gray1"
+              >
+                <svg
+                  width="24"
+                  height="25"
+                  viewBox="0 0 24 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9 22.5H15C20 22.5 22 20.5 22 15.5V9.5C22 4.5 20 2.5 15 2.5H9C4 2.5 2 4.5 2 9.5V15.5C2 20.5 4 22.5 9 22.5Z"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M2 13.5H5.76C6.52 13.5 7.21 13.93 7.55 14.61L8.44 16.4C9 17.5 10 17.5 10.24 17.5H13.77C14.53 17.5 15.22 17.07 15.56 16.39L16.45 14.6C16.79 13.92 17.48 13.49 18.24 13.49H21.98"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M10.34 7.5H13.67"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M9.5 10.5H14.5"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+
+              <!-- Notification Icon -->
+              <button
+                type="button"
+                class="flex items-center justify-center w-12 h-12 bg-white border rounded-full border-gray1"
+              >
+                <svg
+                  width="24"
+                  height="25"
+                  viewBox="0 0 24 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 6.93994V10.2699"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M12.02 2.5C8.34002 2.5 5.36002 5.48 5.36002 9.16V11.26C5.36002 11.94 5.08002 12.96 4.73002 13.54L3.46002 15.66C2.68002 16.97 3.22002 18.43 4.66002 18.91C9.44002 20.5 14.61 20.5 19.39 18.91C20.74 18.46 21.32 16.88 20.59 15.66L19.32 13.54C18.97 12.96 18.69 11.93 18.69 11.26V9.16C18.68 5.5 15.68 2.5 12.02 2.5Z"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M15.33 19.3201C15.33 21.1501 13.83 22.6501 12 22.6501C11.09 22.6501 10.25 22.2701 9.64998 21.6701C9.04998 21.0701 8.66998 20.2301 8.66998 19.3201"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-miterlimit="10"
+                  />
+                </svg>
+              </button>
+
+              <!-- User -->
+              <div class="relative">
+                <button
+                  id="navbar_selectbox"
+                  class="flex items-center justify-center gap-3 p-2 bg-white border rounded-full border-gray1"
+                >
+                  <img
+                    src="/src/assets/images/user.jpg"
+                    alt="User Avatar"
+                    class="object-cover rounded-full min-w-9 min-h-9 w-9 h-9"
+                  />
+                  <div class="hidden md:flex">
+                    <div class="flex flex-col">
+                      <h4 class="text-sm">Alex meian</h4>
+                      <p class="text-xs text-gray3">Prodcut manager</p>
+                    </div>
+                  </div>
+                  <span class="hidden text-sm md:flex">
+                    <img src="/src/assets/icons/arrow-bottom.svg" alt="" />
+                  </span>
+                </button>
+
+                <div
+                  class="absolute right-0 flex-col hidden w-40 py-2 bg-white rounded-lg shadow-lg md:w-full top-14 md:right-auto"
+                  id="navbar_selectbox_inner"
+                >
+                  <!-- Settings -->
+                  <a href="/system_settings.html" class="w-full">
+                    <button
+                      type="button"
+                      class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray2"
+                    >
+                      <!-- label -->
+                      <h3 class="text-xs">System Setting</h3>
+
+                      <!-- Icon -->
+                      <img src="/src/assets/icons/setting.svg" alt="" />
+                    </button>
+                  </a>
+
+                  <!-- Logout -->
+                  <button
+                    type="button"
+                    class="flex items-center justify-between px-4 py-2 hover:bg-gray2"
+                    id="logout"
+                  >
+                    <!-- label -->
+                    <h3 class="text-xs">Log out</h3>
+
+                    <!-- Icon -->
+                    <img src="/src/assets/icons/logout.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col p-6">
+            <!-- Tabs and Button -->
+            <div class="flex flex-col-reverse justify-between md:flex-row">
+              <div class="flex mb-4 space-x-8 border-b operator_billings_tabs">
+                <button
+                  class="px-4 py-3 font-semibold border-b-2 text-mainColor border-mainColor operator_billings_tab"
+                  data-tab="Operator Billings"
+                >
+                  Operator Billings
+                </button>
+                <button
+                  class="px-6 py-4 text-gray-600 operator_billings_tab"
+                  data-tab="COD Billings"
+                >
+                  COD Billings
+                </button>
+              </div>
+
+              <div class="flex mb-5 space-x-4 md:mb-0">
+                <button
+                  class="flex items-center justify-center w-full h-12 gap-3 px-4 py-2 text-white rounded-md md:w-48 bg-blue1 border-blue1"
+                >
+                  <img src="/src/assets/icons/add-square.svg" alt="" />
+                  <span>New</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Operator Billings -->
+            <div
+              class="operator_billings_tab_content"
+              data-tab="Operator Billings"
+            >
+              <!-- Balance setions -->
+              <div class="grid grid-cols-2 gap-6 mb-5">
+                <div
+                  class="flex flex-col justify-center p-5 bg-white border rounded-lg md:justify-between md:flex-row md:px-8 md:p-10 border-gray1"
+                >
+                  <div class="flex flex-col gap-6">
+                    <h4 class="text-sm font-medium text-black1">
+                      Total Balance
+                    </h4>
+                    <p class="text-lg md:text-3xl">
+                      <span class="text-sm">SAR</span> 53,959,725.98
+                    </p>
+                  </div>
+
+                  <div class="flex items-center justify-center">
+                    <img src="/src/assets/icons/Wallet.svg" alt="" />
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col justify-center p-10 px-8 bg-white border rounded-lg md:flex-row md:justify-between border-gray1"
+                >
+                  <div class="flex flex-col gap-6">
+                    <h4 class="text-sm font-medium text-black1">
+                      Total Balance
+                    </h4>
+                    <p class="text-lg md:text-3xl">
+                      <span class="text-sm">SAR</span> 53,959,725.98
+                    </p>
+                  </div>
+
+                  <div class="flex items-center justify-center">
+                    <img src="/src/assets/icons/Tax.svg" alt="" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-4 bg-white border rounded-lg border-gray1">
+                <!-- Navigation Tabs -->
+                <div
+                  class="flex flex-col items-center justify-between mb-4 border-b md:flex-row"
+                >
+                  <div class="flex flex-col mb-3">
+                    <h3 class="mb-2 text-base font-medium text-black">
+                      Billings
+                    </h3>
+                    <p class="text-xs text-gray6">200 Billings</p>
+                  </div>
+                  <!-- Search -->
+                  <div
+                    class="flex items-center justify-start w-full gap-3 p-4 px-4 mb-3 bg-white border rounded-full md:w-96 border-gray1"
+                  >
+                    <!-- Icon -->
+                    <svg
+                      width="22"
+                      height="23"
+                      viewBox="0 0 22 23"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M10.5416 3.02075C6.11186 3.02075 2.52081 6.6118 2.52081 11.0416C2.52081 15.4714 6.11186 19.0624 10.5416 19.0624C14.9714 19.0624 18.5625 15.4714 18.5625 11.0416C18.5625 6.6118 14.9714 3.02075 10.5416 3.02075ZM1.14581 11.0416C1.14581 5.85241 5.35247 1.64575 10.5416 1.64575C15.7308 1.64575 19.9375 5.85241 19.9375 11.0416C19.9375 16.2308 15.7308 20.4374 10.5416 20.4374C5.35247 20.4374 1.14581 16.2308 1.14581 11.0416Z"
+                        fill="#A30133"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M17.8472 18.3471C18.1157 18.0786 18.551 18.0786 18.8194 18.3471L20.6528 20.1804C20.9213 20.4489 20.9213 20.8842 20.6528 21.1527C20.3843 21.4212 19.949 21.4212 19.6805 21.1527L17.8472 19.3194C17.5787 19.0509 17.5787 18.6156 17.8472 18.3471Z"
+                        fill="#A30133"
+                      />
+                    </svg>
+
+                    <!-- Input -->
+                    <input
+                      type="text"
+                      placeholder="Search here..."
+                      class="outline-none"
+                    />
+                  </div>
+                </div>
+                <!-- Table -->
+                <div class="w-full overflow-x-auto">
+                  <table
+                    class="w-full text-sm text-left text-gray-700 lg:table-fixed"
+                  >
+                    <thead class="bg-gray-50">
+                      <tr>
+                        <th class="px-4 py-3 font-medium md:w-1/5 w-32">
+                          Name
+                        </th>
+                        <th class="px-4 py-3 font-medium">ID</th>
+                        <th class="px-4 py-3 font-medium">Total Order</th>
+                        <th class="px-4 py-3 font-medium">Total Balance</th>
+                        <th class="px-4 py-3 font-medium">Country</th>
+                        <th class="px-4 py-3 font-medium">City</th>
+                        <th class="px-4 py-3 font-medium">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody class="odd:bg-gray-100">
+                      <tr class="">
+                        <td class="flex items-center px-4 py-2 space-x-2">
+                          <img
+                            src="https://via.placeholder.com/30"
+                            alt="Profile"
+                            class="w-8 h-8 rounded-full"
+                          />
+                          <span>10 Percent - Ar Rab</span>
+                        </td>
+                        <td class="px-4 py-4">22110</td>
+                        <td class="px-4 py-4">24 Orders</td>
+                        <td class="px-4 py-4">1000.00 SAR</td>
+                        <td class="px-4 py-4">Saudi Arabia</td>
+                        <td class="px-4 py-4">Riyadh</td>
+                        <td class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/delete.svg" alt="" />
+                          </button>
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/edit.svg" alt="" />
+                          </button>
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/view.svg" alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                      <tr class="">
+                        <td class="flex items-center px-4 py-2 space-x-2">
+                          <img
+                            src="https://via.placeholder.com/30"
+                            alt="Profile"
+                            class="w-8 h-8 rounded-full"
+                          />
+                          <span>AB Tamreya - Alawali</span>
+                        </td>
+                        <td class="px-4 py-4">22494</td>
+                        <td class="px-4 py-4">6 Orders</td>
+                        <td class="px-4 py-4">10.000 SAR</td>
+                        <td class="px-4 py-4">Saudi Arabia</td>
+                        <td class="px-4 py-4">Riyadh</td>
+                        <td class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/delete.svg" alt="" />
+                          </button>
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/edit.svg" alt="" />
+                          </button>
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/view.svg" alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                      <tr class="">
+                        <td class="flex items-center px-4 py-2 space-x-2">
+                          <img
+                            src="https://via.placeholder.com/30"
+                            alt="Profile"
+                            class="w-8 h-8 rounded-full"
+                          />
+                          <span>3roof</span>
+                        </td>
+                        <td class="px-4 py-4">21833</td>
+                        <td class="px-4 py-4">31 Orders</td>
+                        <td class="px-4 py-4">50.000 SAR</td>
+                        <td class="px-4 py-4">Saudi Arabia</td>
+                        <td class="px-4 py-4">Riyadh</td>
+                        <td class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/delete.svg" alt="" />
+                          </button>
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/edit.svg" alt="" />
+                          </button>
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/view.svg" alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                      <tr class="">
+                        <td class="flex items-center px-4 py-2 space-x-2">
+                          <img
+                            src="https://via.placeholder.com/30"
+                            alt="Profile"
+                            class="w-8 h-8 rounded-full"
+                          />
+                          <span>Adoro La Pasta - Al Aqiq</span>
+                        </td>
+                        <td class="px-4 py-4">22421</td>
+                        <td class="px-4 py-4">8 Orders</td>
+                        <td class="px-4 py-4">12.000 SAR</td>
+                        <td class="px-4 py-4">Saudi Arabia</td>
+                        <td class="px-4 py-4">Riyadh</td>
+                        <td class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/delete.svg" alt="" />
+                          </button>
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/edit.svg" alt="" />
+                          </button>
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/view.svg" alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                      <tr class="">
+                        <td class="flex items-center px-4 py-2 space-x-2">
+                          <img
+                            src="https://via.placeholder.com/30"
+                            alt="Profile"
+                            class="w-8 h-8 rounded-full"
+                          />
+                          <span>Adoro La Pasta - Al Aqiq</span>
+                        </td>
+                        <td class="px-4 py-4">22421</td>
+                        <td class="px-4 py-4">8 Orders</td>
+                        <td class="px-4 py-4">12.000 SAR</td>
+                        <td class="px-4 py-4">Saudi Arabia</td>
+                        <td class="px-4 py-4">Riyadh</td>
+                        <td class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/delete.svg" alt="" />
+                          </button>
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/edit.svg" alt="" />
+                          </button>
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/view.svg" alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                      <tr class="">
+                        <td class="flex items-center px-4 py-2 space-x-2">
+                          <img
+                            src="https://via.placeholder.com/30"
+                            alt="Profile"
+                            class="w-8 h-8 rounded-full"
+                          />
+                          <span>Adoro La Pasta - Al Aqiq</span>
+                        </td>
+                        <td class="px-4 py-4">22421</td>
+                        <td class="px-4 py-4">8 Orders</td>
+                        <td class="px-4 py-4">12.000 SAR</td>
+                        <td class="px-4 py-4">Saudi Arabia</td>
+                        <td class="px-4 py-4">Riyadh</td>
+                        <td class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/delete.svg" alt="" />
+                          </button>
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/edit.svg" alt="" />
+                          </button>
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/view.svg" alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                      <tr class="">
+                        <td class="flex items-center px-4 py-2 space-x-2">
+                          <img
+                            src="https://via.placeholder.com/30"
+                            alt="Profile"
+                            class="w-8 h-8 rounded-full"
+                          />
+                          <span>Adoro La Pasta - Al Aqiq</span>
+                        </td>
+                        <td class="px-4 py-4">22421</td>
+                        <td class="px-4 py-4">8 Orders</td>
+                        <td class="px-4 py-4">12.000 SAR</td>
+                        <td class="px-4 py-4">Saudi Arabia</td>
+                        <td class="px-4 py-4">Riyadh</td>
+                        <td class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/delete.svg" alt="" />
+                          </button>
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/edit.svg" alt="" />
+                          </button>
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/view.svg" alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                      <tr class="">
+                        <td class="flex items-center px-4 py-2 space-x-2">
+                          <img
+                            src="https://via.placeholder.com/30"
+                            alt="Profile"
+                            class="w-8 h-8 rounded-full"
+                          />
+                          <span>Adoro La Pasta - Al Aqiq</span>
+                        </td>
+                        <td class="px-4 py-4">22421</td>
+                        <td class="px-4 py-4">8 Orders</td>
+                        <td class="px-4 py-4">12.000 SAR</td>
+                        <td class="px-4 py-4">Saudi Arabia</td>
+                        <td class="px-4 py-4">Riyadh</td>
+                        <td class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/delete.svg" alt="" />
+                          </button>
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/edit.svg" alt="" />
+                          </button>
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/view.svg" alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                      <tr class="">
+                        <td class="flex items-center px-4 py-2 space-x-2">
+                          <img
+                            src="https://via.placeholder.com/30"
+                            alt="Profile"
+                            class="w-8 h-8 rounded-full"
+                          />
+                          <span>Adoro La Pasta - Al Aqiq</span>
+                        </td>
+                        <td class="px-4 py-4">22421</td>
+                        <td class="px-4 py-4">8 Orders</td>
+                        <td class="px-4 py-4">12.000 SAR</td>
+                        <td class="px-4 py-4">Saudi Arabia</td>
+                        <td class="px-4 py-4">Riyadh</td>
+                        <td class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/delete.svg" alt="" />
+                          </button>
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/edit.svg" alt="" />
+                          </button>
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/view.svg" alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                      <!-- Additional rows as needed -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- COD Billings -->
+            <div
+              class="hidden operator_billings_tab_content"
+              data-tab="COD Billings"
+            >
+              <!-- Balance setions -->
+              <div class="grid grid-cols-2 gap-6 mb-5">
+                <div
+                  class="flex justify-between p-10 px-8 bg-white border rounded-lg border-gray1"
+                >
+                  <div class="flex flex-col gap-6">
+                    <h4 class="text-sm font-medium text-black1">
+                      Total Balance
+                    </h4>
+                    <p class="text-3xl">
+                      <span class="text-sm">SAR</span> 53,959,725.98
+                    </p>
+                  </div>
+
+                  <div>
+                    <img src="/src/assets/icons/Wallet.svg" alt="" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-4 bg-white border rounded-lg border-gray1">
+                <!-- Navigation Tabs -->
+                <div class="flex items-center justify-between mb-4 border-b">
+                  <div class="flex flex-col mb-3">
+                    <h3 class="mb-2 text-base font-medium text-black">
+                      Billings
+                    </h3>
+                    <p class="text-xs text-gray6">200 Billings</p>
+                  </div>
+                  <!-- Search -->
+                  <div
+                    class="flex items-center justify-start gap-3 p-4 px-4 mb-3 bg-white border rounded-full w-96 border-gray1"
+                  >
+                    <!-- Icon -->
+                    <svg
+                      width="22"
+                      height="23"
+                      viewBox="0 0 22 23"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M10.5416 3.02075C6.11186 3.02075 2.52081 6.6118 2.52081 11.0416C2.52081 15.4714 6.11186 19.0624 10.5416 19.0624C14.9714 19.0624 18.5625 15.4714 18.5625 11.0416C18.5625 6.6118 14.9714 3.02075 10.5416 3.02075ZM1.14581 11.0416C1.14581 5.85241 5.35247 1.64575 10.5416 1.64575C15.7308 1.64575 19.9375 5.85241 19.9375 11.0416C19.9375 16.2308 15.7308 20.4374 10.5416 20.4374C5.35247 20.4374 1.14581 16.2308 1.14581 11.0416Z"
+                        fill="#A30133"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M17.8472 18.3471C18.1157 18.0786 18.551 18.0786 18.8194 18.3471L20.6528 20.1804C20.9213 20.4489 20.9213 20.8842 20.6528 21.1527C20.3843 21.4212 19.949 21.4212 19.6805 21.1527L17.8472 19.3194C17.5787 19.0509 17.5787 18.6156 17.8472 18.3471Z"
+                        fill="#A30133"
+                      />
+                    </svg>
+
+                    <!-- Input -->
+                    <input
+                      type="text"
+                      placeholder="Search here..."
+                      class="outline-none"
+                    />
+                  </div>
+                </div>
+                <!-- Table -->
+                <div class="w-full overflow-x-auto">
+                  <table
+                    class="w-full text-sm text-left text-gray-700 lg:table-fixed"
+                  >
+                    <thead class="bg-gray-50">
+                      <tr>
+                        <th class="px-4 py-3 font-medium md:w-1/5 w-32">
+                          Name
+                        </th>
+                        <th class="px-4 py-3 font-medium">ID</th>
+                        <th class="px-4 py-3 font-medium">Total Order</th>
+                        <th class="px-4 py-3 font-medium">Total Balance</th>
+                        <th class="px-4 py-3 font-medium">Country</th>
+                        <th class="px-4 py-3 font-medium">City</th>
+                        <th class="px-4 py-3 font-medium">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody class="odd:bg-gray-100">
+                      <tr class="">
+                        <td class="flex items-center px-4 py-2 space-x-2">
+                          <img
+                            src="https://via.placeholder.com/30"
+                            alt="Profile"
+                            class="w-8 h-8 rounded-full"
+                          />
+                          <span>10 Percent - Ar Rab</span>
+                        </td>
+                        <td class="px-4 py-4">22110</td>
+                        <td class="px-4 py-4">24 Orders</td>
+                        <td class="px-4 py-4">1000.00 SAR</td>
+                        <td class="px-4 py-4">Saudi Arabia</td>
+                        <td class="px-4 py-4">Riyadh</td>
+                        <td class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/view.svg" alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                      <tr class="">
+                        <td class="flex items-center px-4 py-2 space-x-2">
+                          <img
+                            src="https://via.placeholder.com/30"
+                            alt="Profile"
+                            class="w-8 h-8 rounded-full"
+                          />
+                          <span>AB Tamreya - Alawali</span>
+                        </td>
+                        <td class="px-4 py-4">22494</td>
+                        <td class="px-4 py-4">6 Orders</td>
+                        <td class="px-4 py-4">10.000 SAR</td>
+                        <td class="px-4 py-4">Saudi Arabia</td>
+                        <td class="px-4 py-4">Riyadh</td>
+                        <td class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/view.svg" alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                      <tr class="">
+                        <td class="flex items-center px-4 py-2 space-x-2">
+                          <img
+                            src="https://via.placeholder.com/30"
+                            alt="Profile"
+                            class="w-8 h-8 rounded-full"
+                          />
+                          <span>3roof</span>
+                        </td>
+                        <td class="px-4 py-4">21833</td>
+                        <td class="px-4 py-4">31 Orders</td>
+                        <td class="px-4 py-4">50.000 SAR</td>
+                        <td class="px-4 py-4">Saudi Arabia</td>
+                        <td class="px-4 py-4">Riyadh</td>
+                        <td class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/view.svg" alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                      <tr class="">
+                        <td class="flex items-center px-4 py-2 space-x-2">
+                          <img
+                            src="https://via.placeholder.com/30"
+                            alt="Profile"
+                            class="w-8 h-8 rounded-full"
+                          />
+                          <span>Adoro La Pasta - Al Aqiq</span>
+                        </td>
+                        <td class="px-4 py-4">22421</td>
+                        <td class="px-4 py-4">8 Orders</td>
+                        <td class="px-4 py-4">12.000 SAR</td>
+                        <td class="px-4 py-4">Saudi Arabia</td>
+                        <td class="px-4 py-4">Riyadh</td>
+                        <td class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/view.svg" alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                      <tr class="">
+                        <td class="flex items-center px-4 py-2 space-x-2">
+                          <img
+                            src="https://via.placeholder.com/30"
+                            alt="Profile"
+                            class="w-8 h-8 rounded-full"
+                          />
+                          <span>Adoro La Pasta - Al Aqiq</span>
+                        </td>
+                        <td class="px-4 py-4">22421</td>
+                        <td class="px-4 py-4">8 Orders</td>
+                        <td class="px-4 py-4">12.000 SAR</td>
+                        <td class="px-4 py-4">Saudi Arabia</td>
+                        <td class="px-4 py-4">Riyadh</td>
+                        <td class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/view.svg" alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                      <tr class="">
+                        <td class="flex items-center px-4 py-2 space-x-2">
+                          <img
+                            src="https://via.placeholder.com/30"
+                            alt="Profile"
+                            class="w-8 h-8 rounded-full"
+                          />
+                          <span>Adoro La Pasta - Al Aqiq</span>
+                        </td>
+                        <td class="px-4 py-4">22421</td>
+                        <td class="px-4 py-4">8 Orders</td>
+                        <td class="px-4 py-4">12.000 SAR</td>
+                        <td class="px-4 py-4">Saudi Arabia</td>
+                        <td class="px-4 py-4">Riyadh</td>
+                        <td class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/view.svg" alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                      <tr class="">
+                        <td class="flex items-center px-4 py-2 space-x-2">
+                          <img
+                            src="https://via.placeholder.com/30"
+                            alt="Profile"
+                            class="w-8 h-8 rounded-full"
+                          />
+                          <span>Adoro La Pasta - Al Aqiq</span>
+                        </td>
+                        <td class="px-4 py-4">22421</td>
+                        <td class="px-4 py-4">8 Orders</td>
+                        <td class="px-4 py-4">12.000 SAR</td>
+                        <td class="px-4 py-4">Saudi Arabia</td>
+                        <td class="px-4 py-4">Riyadh</td>
+                        <td class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/view.svg" alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                      <tr class="">
+                        <td class="flex items-center px-4 py-2 space-x-2">
+                          <img
+                            src="https://via.placeholder.com/30"
+                            alt="Profile"
+                            class="w-8 h-8 rounded-full"
+                          />
+                          <span>Adoro La Pasta - Al Aqiq</span>
+                        </td>
+                        <td class="px-4 py-4">22421</td>
+                        <td class="px-4 py-4">8 Orders</td>
+                        <td class="px-4 py-4">12.000 SAR</td>
+                        <td class="px-4 py-4">Saudi Arabia</td>
+                        <td class="px-4 py-4">Riyadh</td>
+                        <td class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/view.svg" alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                      <tr class="">
+                        <td class="flex items-center px-4 py-2 space-x-2">
+                          <img
+                            src="https://via.placeholder.com/30"
+                            alt="Profile"
+                            class="w-8 h-8 rounded-full"
+                          />
+                          <span>Adoro La Pasta - Al Aqiq</span>
+                        </td>
+                        <td class="px-4 py-4">22421</td>
+                        <td class="px-4 py-4">8 Orders</td>
+                        <td class="px-4 py-4">12.000 SAR</td>
+                        <td class="px-4 py-4">Saudi Arabia</td>
+                        <td class="px-4 py-4">Riyadh</td>
+                        <td class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img src="/src/assets/icons/view.svg" alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                      <!-- Additional rows as needed -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pagination -->
+            <div
+              class="flex flex-col items-center justify-between gap-4 mt-4 md:flex-row"
+            >
+              <div>
+                <label for="itemsPerPage" class="font-normal text-gray11">
+                  Number of items
+                </label>
+                <select id="itemsPerPage" class="px-2 py-1 border rounded">
+                  <option>10</option>
+                  <option>20</option>
+                  <option>50</option>
+                </select>
+              </div>
+              <div class="flex space-x-2">
+                <button
+                  class="flex items-center justify-center bg-white border rounded w-9 h-9 border-gray10"
+                >
+                  <img src="/src/assets/icons/arrow-left-table.svg" alt="" />
+                </button>
+                <button class="text-white rounded bg-mainColor w-9 h-9">
+                  1
+                </button>
+                <button class="bg-white border rounded w-9 h-9 border-gray10">
+                  2
+                </button>
+                <button class="bg-white border rounded w-9 h-9 border-gray10">
+                  3
+                </button>
+                <button class="bg-white border rounded w-9 h-9 border-gray10">
+                  ...
+                </button>
+                <button class="bg-white border rounded w-9 h-9 border-gray10">
+                  10
+                </button>
+                <button
+                  class="flex items-center justify-center bg-white border rounded w-9 h-9 border-gray10"
+                >
+                  <img src="/src/assets/icons/arrow-right-table.svg" alt="" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </body>
+</html>

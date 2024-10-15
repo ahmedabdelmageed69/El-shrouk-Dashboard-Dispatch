@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <script defer src="/src/js/main.js"></script>
+    <link rel="stylesheet" href="/src/css/output.css" />
+  </head>
+  <body>
+    <main>
+      <div class="flex">
+        <!-- Sidebar -->
+        <div
+          class="lg:w-[260px] overflow-hidden fixed lg:sticky top-0 lg:left-0 left-full h-screen z-50"
+          id="sidebar"
+        >
+          <div
+            class="w-full h-screen bg-sidebar rounded-tr-[32px] rounded-br-[32px] p-6 py-16"
+          >
+            <img
+              src="/src/assets/images/logo.png"
+              class="sidebar_logo"
+              alt=""
+            />
+
+            <button
+              type="button"
+              id="sidebar_toggle"
+              class="w-7 h-7 rounded-full bg-white border border-gray1 justify-center items-center lg:flex hidden absolute -right-2.5 top-6 shadow-xl"
+            >
+              <img src="/src/assets/icons/arrow-left.svg" alt="" />
+            </button>
+            <button
+              type="button"
+              id="sidebar_toggle"
+              class="absolute flex items-center justify-center bg-white border rounded-full shadow-xl w-7 h-7 border-gray1 lg:hidden right-5 top-5"
+              onclick="closeSidebarInMobile()"
+            >
+              <img src="/src/assets/icons/arrow-left.svg" alt="" />
+            </button>
+
+            <div class="flex flex-col gap-4 mt-10">
+              <!-- Dashboard -->
+              <a
+                href="/index.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <img src="/src/assets/icons/dashboardIcon.svg" alt="" />
+                <h3 class="text-sm sidebar_page_title" id="sidebar-page-label">
+                  Dashboard
+                </h3>
+              </a>
+
+              <!-- Dispatcher -->
+              <a
+                href="/dispatcher.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <img src="/src/assets/icons/dispatcherIcon.svg" alt="" />
+                <h3 class="text-sm sidebar_page_title sidebar-page-label">
+                  Dispatcher
+                </h3>
+              </a>
+
+              <!-- Operators -->
+              <div class="relative">
+                <button
+                  class="flex items-center justify-between w-full gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+                  id="sidebar_operators"
+                >
+                  <div class="flex gap-4">
+                    <img src="/src/assets/icons/operatorsIcon.svg" alt="" />
+                    <h3
+                      class="text-sm sidebar_page_title"
+                      id="sidebar-page-label"
+                    >
+                      Operators
+                    </h3>
+                  </div>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="sidebar_page_title"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M2.69041 4.6037C2.49712 4.80251 2.49712 5.12485 2.69041 5.32366L6.65 9.39639C6.74283 9.49186 6.86872 9.5455 6.99999 9.5455C7.13125 9.5455 7.25715 9.49186 7.34997 9.39639L11.3096 5.32366C11.5029 5.12485 11.5029 4.80251 11.3096 4.6037C11.1163 4.40489 10.8029 4.40489 10.6096 4.6037L6.99999 8.31644L3.39037 4.6037C3.19708 4.40489 2.8837 4.40489 2.69041 4.6037Z"
+                      fill="#fff"
+                    />
+                  </svg>
+                </button>
+
+                <!-- opt -->
+                <div class="flex-col hidden" id="sidebar_operators_list">
+                  <a
+                    href="/operators.html"
+                    class="relative flex items-center justify-start h-10 gap-4 p-4 text-white bg-transparent rounded-full after:w-[1px] after:h-8 after:bg-white after:absolute after:left-[22px] after:top-6"
+                  >
+                    <span
+                      class="relative flex w-[14px] h-[14px] bg-white z-10 rounded-full"
+                    ></span>
+                    <h3 class="text-sm sidebar-page-label">Operators</h3>
+                  </a>
+                  <a
+                    href="/operators-billings.html"
+                    class="relative flex items-center justify-start h-10 gap-4 p-4 text-white bg-transparent rounded-full after:w-[1px] after:h-8 after:bg-white after:absolute after:left-[22px] after:top-6"
+                  >
+                    <span
+                      class="relative flex w-[14px] h-[14px] bg-white rounded-full"
+                    ></span>
+                    <h3 class="text-sm sidebar-page-label">
+                      Operators Billings
+                    </h3>
+                  </a>
+                  <a
+                    href="/permits.html"
+                    class="flex items-center justify-start h-10 gap-4 p-4 text-white bg-transparent rounded-full"
+                  >
+                    <span
+                      class="relative flex w-[14px] h-[14px] bg-white rounded-full"
+                    ></span>
+                    <h3 class="text-sm sidebar-page-label">Permits</h3>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Clients -->
+              <a
+                href="/clients.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <img src="/src/assets/icons/clientsIcon.svg" alt="" />
+                <h3 class="text-sm sidebar_page_title">Clients</h3>
+              </a>
+
+              <!-- Users -->
+              <a
+                href="/users.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <img src="/src/assets/icons/usersIcon.svg" alt="" />
+                <h3 class="text-sm sidebar_page_title">Users</h3>
+              </a>
+
+              <!-- Vehicles -->
+              <a
+                href="/vehicles.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <img src="/src/assets/icons/vehiclesIcon.svg" alt="" />
+                <h3 class="text-sm sidebar_page_title">Vehicles</h3>
+              </a>
+
+              <!-- Orders -->
+              <a
+                href="/orders.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <img src="/src/assets/icons/ordersIcon.svg" alt="" />
+                <h3 class="text-sm sidebar_page_title">Orders</h3>
+              </a>
+
+              <!-- Reports -->
+              <a
+                href="/reports.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <img src="/src/assets/icons/reportsIcon.svg" alt="" />
+                <h3 class="text-sm sidebar_page_title">Reports</h3>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- System Settings -->
+        <div class="w-full">
+          <div
+            class="h-[4.7rem] w-full flex justify-between border-b border-b-gray1 bg-gray2 items-center px-6"
+          >
+            <div class="flex items-center gap-2">
+              <button
+                type="button"
+                class="flex w-10 h-10 p-3 border rounded-lg lg:hidden"
+                onclick="openSidebarInMobile()"
+              >
+                <img src="/src/assets/icons/menu-toggle.svg" alt="" />
+              </button>
+              <h2 class="text-sm md:text-2xl">System Settings</h2>
+            </div>
+
+            <div class="flex items-center gap-2 md:gap-5">
+              <!-- Search -->
+              <div
+                class="flex items-center justify-center w-10 h-10 gap-3 bg-white border rounded-full md:w-auto md:h-auto md:p-2 md:px-4 border-gray1"
+              >
+                <!-- Icon -->
+                <svg
+                  width="22"
+                  height="23"
+                  viewBox="0 0 22 23"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M10.5416 3.02075C6.11186 3.02075 2.52081 6.6118 2.52081 11.0416C2.52081 15.4714 6.11186 19.0624 10.5416 19.0624C14.9714 19.0624 18.5625 15.4714 18.5625 11.0416C18.5625 6.6118 14.9714 3.02075 10.5416 3.02075ZM1.14581 11.0416C1.14581 5.85241 5.35247 1.64575 10.5416 1.64575C15.7308 1.64575 19.9375 5.85241 19.9375 11.0416C19.9375 16.2308 15.7308 20.4374 10.5416 20.4374C5.35247 20.4374 1.14581 16.2308 1.14581 11.0416Z"
+                    fill="#A30133"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M17.8472 18.3471C18.1157 18.0786 18.551 18.0786 18.8194 18.3471L20.6528 20.1804C20.9213 20.4489 20.9213 20.8842 20.6528 21.1527C20.3843 21.4212 19.949 21.4212 19.6805 21.1527L17.8472 19.3194C17.5787 19.0509 17.5787 18.6156 17.8472 18.3471Z"
+                    fill="#A30133"
+                  />
+                </svg>
+
+                <!-- Input -->
+                <input
+                  type="text"
+                  placeholder="Search for anything..."
+                  class="hidden outline-none md:flex"
+                />
+              </div>
+
+              <!-- Message Icon -->
+              <button
+                type="button"
+                class="flex items-center justify-center w-10 h-10 bg-white border rounded-full md:w-12 md:h-12 border-gray1"
+              >
+                <svg
+                  width="24"
+                  height="25"
+                  viewBox="0 0 24 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9 22.5H15C20 22.5 22 20.5 22 15.5V9.5C22 4.5 20 2.5 15 2.5H9C4 2.5 2 4.5 2 9.5V15.5C2 20.5 4 22.5 9 22.5Z"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M2 13.5H5.76C6.52 13.5 7.21 13.93 7.55 14.61L8.44 16.4C9 17.5 10 17.5 10.24 17.5H13.77C14.53 17.5 15.22 17.07 15.56 16.39L16.45 14.6C16.79 13.92 17.48 13.49 18.24 13.49H21.98"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M10.34 7.5H13.67"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M9.5 10.5H14.5"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+
+              <!-- Notification Icon -->
+              <button
+                type="button"
+                class="flex items-center justify-center w-12 h-12 bg-white border rounded-full border-gray1"
+              >
+                <svg
+                  width="24"
+                  height="25"
+                  viewBox="0 0 24 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 6.93994V10.2699"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M12.02 2.5C8.34002 2.5 5.36002 5.48 5.36002 9.16V11.26C5.36002 11.94 5.08002 12.96 4.73002 13.54L3.46002 15.66C2.68002 16.97 3.22002 18.43 4.66002 18.91C9.44002 20.5 14.61 20.5 19.39 18.91C20.74 18.46 21.32 16.88 20.59 15.66L19.32 13.54C18.97 12.96 18.69 11.93 18.69 11.26V9.16C18.68 5.5 15.68 2.5 12.02 2.5Z"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M15.33 19.3201C15.33 21.1501 13.83 22.6501 12 22.6501C11.09 22.6501 10.25 22.2701 9.64998 21.6701C9.04998 21.0701 8.66998 20.2301 8.66998 19.3201"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-miterlimit="10"
+                  />
+                </svg>
+              </button>
+
+              <!-- User -->
+              <div class="relative">
+                <button
+                  id="navbar_selectbox"
+                  class="flex items-center justify-center gap-3 p-2 bg-white border rounded-full border-gray1"
+                >
+                  <img
+                    src="/src/assets/images/user.jpg"
+                    alt="User Avatar"
+                    class="object-cover rounded-full min-w-9 min-h-9 w-9 h-9"
+                  />
+                  <div class="hidden md:flex">
+                    <div class="flex flex-col">
+                      <h4 class="text-sm">Alex meian</h4>
+                      <p class="text-xs text-gray3">Prodcut manager</p>
+                    </div>
+                  </div>
+                  <span class="hidden text-sm md:flex">
+                    <img src="/src/assets/icons/arrow-bottom.svg" alt="" />
+                  </span>
+                </button>
+
+                <div
+                  class="absolute right-0 flex-col hidden w-40 py-2 bg-white rounded-lg shadow-lg md:w-full top-14 md:right-auto"
+                  id="navbar_selectbox_inner"
+                >
+                  <!-- Settings -->
+                  <a href="/system_settings.html" class="w-full">
+                    <button
+                      type="button"
+                      class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray2"
+                    >
+                      <!-- label -->
+                      <h3 class="text-xs">System Setting</h3>
+
+                      <!-- Icon -->
+                      <img src="/src/assets/icons/setting.svg" alt="" />
+                    </button>
+                  </a>
+
+                  <!-- Logout -->
+                  <button
+                    type="button"
+                    class="flex items-center justify-between px-4 py-2 hover:bg-gray2"
+                    id="logout"
+                  >
+                    <!-- label -->
+                    <h3 class="text-xs">Log out</h3>
+
+                    <!-- Icon -->
+                    <img src="/src/assets/icons/logout.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Container -->
+          <div class="flex flex-row min-h-screen p-4">
+            <div
+              class="flex flex-col w-full p-4 bg-white border rounded-lg md:flex-row border-gray1"
+            >
+              <!-- Sidebar -->
+              <div
+                class="w-full p-4 bg-white border rounded lg:w-1/4 md:w-1/3 border-gray1"
+              >
+                <div class="space-y-6">
+                  <!-- Account Section -->
+                  <div>
+                    <h2 class="text-base font-bold text-gray-600">Account</h2>
+                    <!-- Account -->
+                    <a
+                      href="#"
+                      class="flex items-center justify-between px-3 py-4 mt-3 text-sm border rounded-md border-mainColor text-mainColor"
+                    >
+                      <div class="flex items-center gap-2">
+                        <svg
+                          width="22"
+                          height="22"
+                          viewBox="0 0 22 22"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M11 11C13.5313 11 15.5833 8.94801 15.5833 6.41671C15.5833 3.8854 13.5313 1.83337 11 1.83337C8.46865 1.83337 6.41663 3.8854 6.41663 6.41671C6.41663 8.94801 8.46865 11 11 11Z"
+                            stroke="#A30133"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M18.8742 20.1667C18.8742 16.6192 15.345 13.75 11 13.75C6.65502 13.75 3.12585 16.6192 3.12585 20.1667"
+                            stroke="#A30133"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                        <span>Account</span>
+                      </div>
+                      <span>
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M8.94995 4.07992L15.47 10.5999C16.24 11.3699 16.24 12.6299 15.47 13.3999L8.94995 19.9199"
+                            stroke="#A30133"
+                            stroke-width="1.5"
+                            stroke-miterlimit="10"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    </a>
+                    <!-- Api Settings -->
+                    <a
+                      href="#"
+                      class="flex items-center justify-between px-3 py-4 mt-3 text-sm border rounded-md border-gray1 text-black1 bg-gray4"
+                    >
+                      <div class="flex items-center gap-2">
+                        <svg
+                          width="22"
+                          height="22"
+                          viewBox="0 0 22 22"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M14.6666 14.6673C15.2314 14.6673 15.6892 14.1983 15.6892 13.6197V12.4822C15.6892 12.2043 15.7969 11.9379 15.9886 11.7414L16.3502 11.3711C16.5499 11.1665 16.5499 10.8348 16.3502 10.6302L15.9886 10.2599C15.7969 10.0635 15.6892 9.79698 15.6892 9.51913V8.38161C15.6892 7.80302 15.2314 7.33398 14.6666 7.33398"
+                            stroke="#272727"
+                            stroke-width="1.375"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M7.33333 14.6673C6.76859 14.6673 6.31077 14.1983 6.31077 13.6197V12.4822C6.31077 12.2043 6.20304 11.9379 6.01128 11.7414L5.64974 11.3711C5.45009 11.1665 5.45009 10.8348 5.64974 10.6302L6.01128 10.2599C6.20304 10.0635 6.31077 9.79698 6.31077 9.51913V8.38161C6.31077 7.80302 6.76859 7.33398 7.33333 7.33398"
+                            stroke="#272727"
+                            stroke-width="1.375"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M9.1665 11H9.17474M12.825 11H12.8332"
+                            stroke="#272727"
+                            stroke-width="1.83333"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M11 20.1673C16.0627 20.1673 20.1667 16.0633 20.1667 11.0007C20.1667 5.93804 16.0627 1.83398 11 1.83398C5.93743 1.83398 1.83337 5.93804 1.83337 11.0007C1.83337 16.0633 5.93743 20.1673 11 20.1673Z"
+                            stroke="#272727"
+                            stroke-width="1.375"
+                          />
+                        </svg>
+
+                        <span>Api Settings</span>
+                      </div>
+                      <span>
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M8.94995 4.07992L15.47 10.5999C16.24 11.3699 16.24 12.6299 15.47 13.3999L8.94995 19.9199"
+                            stroke="#A30133"
+                            stroke-width="1.5"
+                            stroke-miterlimit="10"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    </a>
+                  </div>
+
+                  <!-- System Section -->
+                  <div>
+                    <h2 class="text-base font-bold text-gray-600">System</h2>
+
+                    <!-- Dispatcher Page Settings -->
+                    <a
+                      href="#"
+                      class="flex items-center justify-between px-3 py-4 mt-3 text-sm border rounded-md border-gray1 text-black1 bg-gray4"
+                    >
+                      <div class="flex items-center gap-2">
+                        <svg
+                          width="22"
+                          height="22"
+                          viewBox="0 0 22 22"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M3.31835 7.78315C5.12418 -0.15518 16.885 -0.146013 18.6817 7.79232C19.7359 12.449 16.8392 16.3907 14.3 18.829C12.4575 20.6073 9.54252 20.6073 7.69085 18.829C5.16085 16.3907 2.26418 12.4398 3.31835 7.78315Z"
+                            stroke="#272727"
+                            stroke-width="1.5"
+                          />
+                          <path
+                            d="M12.8334 11.88L9.20337 8.25"
+                            stroke="#272727"
+                            stroke-width="1.5"
+                            stroke-miterlimit="10"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M12.7966 8.28711L9.16663 11.9171"
+                            stroke="#272727"
+                            stroke-width="1.5"
+                            stroke-miterlimit="10"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+
+                        <span>Dispatcher Page Settings</span>
+                      </div>
+                      <span>
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M8.94995 4.07992L15.47 10.5999C16.24 11.3699 16.24 12.6299 15.47 13.3999L8.94995 19.9199"
+                            stroke="#A30133"
+                            stroke-width="1.5"
+                            stroke-miterlimit="10"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    </a>
+                    <!-- Dashboard Page Settings -->
+                    <a
+                      href="#"
+                      class="flex items-center justify-between px-3 py-4 mt-3 text-sm border rounded-md border-gray1 text-black1 bg-gray4"
+                    >
+                      <div class="flex items-center gap-2">
+                        <svg
+                          width="22"
+                          height="22"
+                          viewBox="0 0 22 22"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M13.0347 2.03535C13.6675 1.40261 14.5607 1.14648 15.5834 1.14648H17.4167C18.4393 1.14648 19.3326 1.40261 19.9653 2.03535C20.5981 2.66809 20.8542 3.56134 20.8542 4.58398V6.41732C20.8542 7.43996 20.5981 8.33322 19.9653 8.96595C19.3326 9.59869 18.4393 9.85482 17.4167 9.85482H15.5834C14.5607 9.85482 13.6675 9.59869 13.0347 8.96595C12.402 8.33322 12.1459 7.43996 12.1459 6.41732V4.58398C12.1459 3.56134 12.402 2.66809 13.0347 2.03535ZM14.007 3.00762C13.7231 3.29155 13.5209 3.77329 13.5209 4.58398V6.41732C13.5209 7.22801 13.7231 7.70975 14.007 7.99368C14.2909 8.27761 14.7727 8.47982 15.5834 8.47982H17.4167C18.2274 8.47982 18.7091 8.27761 18.9931 7.99368C19.277 7.70975 19.4792 7.22801 19.4792 6.41732V4.58398C19.4792 3.77329 19.277 3.29155 18.9931 3.00762C18.7091 2.72369 18.2274 2.52148 17.4167 2.52148H15.5834C14.7727 2.52148 14.2909 2.72369 14.007 3.00762Z"
+                            fill="#272727"
+                          />
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M2.03474 13.0353C2.66748 12.4026 3.56073 12.1465 4.58337 12.1465H6.41671C7.43935 12.1465 8.33261 12.4026 8.96534 13.0353C9.59808 13.6681 9.85421 14.5613 9.85421 15.584V17.4173C9.85421 18.44 9.59808 19.3332 8.96534 19.966C8.33261 20.5987 7.43935 20.8548 6.41671 20.8548H4.58337C3.56073 20.8548 2.66748 20.5987 2.03474 19.966C1.402 19.3332 1.14587 18.44 1.14587 17.4173V15.584C1.14587 14.5613 1.402 13.6681 2.03474 13.0353ZM3.00701 14.0076C2.72308 14.2915 2.52087 14.7733 2.52087 15.584V17.4173C2.52087 18.228 2.72308 18.7098 3.00701 18.9937C3.29094 19.2776 3.77268 19.4798 4.58337 19.4798H6.41671C7.2274 19.4798 7.70914 19.2776 7.99307 18.9937C8.277 18.7098 8.47921 18.228 8.47921 17.4173V15.584C8.47921 14.7733 8.277 14.2915 7.99307 14.0076C7.70914 13.7237 7.2274 13.5215 6.41671 13.5215H4.58337C3.77268 13.5215 3.29094 13.7237 3.00701 14.0076Z"
+                            fill="#272727"
+                          />
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M5.50004 2.52148C3.85469 2.52148 2.52087 3.8553 2.52087 5.50065C2.52087 7.146 3.85469 8.47982 5.50004 8.47982C7.14539 8.47982 8.47921 7.146 8.47921 5.50065C8.47921 3.8553 7.14539 2.52148 5.50004 2.52148ZM1.14587 5.50065C1.14587 3.09591 3.0953 1.14648 5.50004 1.14648C7.90478 1.14648 9.85421 3.09591 9.85421 5.50065C9.85421 7.90539 7.90478 9.85482 5.50004 9.85482C3.0953 9.85482 1.14587 7.90539 1.14587 5.50065Z"
+                            fill="#272727"
+                          />
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M16.5 13.5215C14.8547 13.5215 13.5209 14.8553 13.5209 16.5007C13.5209 18.146 14.8547 19.4798 16.5 19.4798C18.1454 19.4798 19.4792 18.146 19.4792 16.5007C19.4792 14.8553 18.1454 13.5215 16.5 13.5215ZM12.1459 16.5007C12.1459 14.0959 14.0953 12.1465 16.5 12.1465C18.9048 12.1465 20.8542 14.0959 20.8542 16.5007C20.8542 18.9054 18.9048 20.8548 16.5 20.8548C14.0953 20.8548 12.1459 18.9054 12.1459 16.5007Z"
+                            fill="#272727"
+                          />
+                        </svg>
+
+                        <span>Dashboard Page Settings</span>
+                      </div>
+                      <span>
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M8.94995 4.07992L15.47 10.5999C16.24 11.3699 16.24 12.6299 15.47 13.3999L8.94995 19.9199"
+                            stroke="#A30133"
+                            stroke-width="1.5"
+                            stroke-miterlimit="10"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Content Section -->
+              <div
+                class="w-full p-6 mt-5 bg-white border rounded md:mt-0 md:ml-6 lg:w-3/4 md:w-2/3 border-gray1"
+              >
+                <h2 class="mb-6 text-base font-medium">Information</h2>
+                <form>
+                  <!-- Information Fields -->
+                  <div class="grid grid-cols-1 gap-4 mb-6 lg:grid-cols-2">
+                    <div>
+                      <label class="block mb-2 text-black1">First Name</label>
+                      <input
+                        type="text"
+                        class="w-full border rounded-md border-gray5 h-[2.9rem]"
+                      />
+                    </div>
+                    <div>
+                      <label class="block mb-2 text-black1">Last Name</label>
+                      <input
+                        type="text"
+                        class="w-full border rounded-md border-gray5 h-[2.9rem]"
+                      />
+                    </div>
+                    <div>
+                      <label class="block mb-2 text-black1">Email </label>
+                      <input
+                        type="email"
+                        class="w-full border rounded-md border-gray5 h-[2.9rem]"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Billing Detail Fields -->
+                  <h2 class="mb-6 text-base font-medium">Billing Detail</h2>
+
+                  <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                    <div>
+                      <label class="block mb-2 text-black1">
+                        Billing VAT No.
+                      </label>
+                      <input
+                        type="text"
+                        class="w-full border rounded-md border-gray5 h-[2.9rem]"
+                      />
+                    </div>
+                    <div>
+                      <label class="block mb-2 text-black1">
+                        Billing Name
+                      </label>
+                      <input
+                        type="text"
+                        class="w-full border rounded-md border-gray5 h-[2.9rem]"
+                      />
+                    </div>
+                    <div>
+                      <label class="block mb-2 text-black1">
+                        Street Name
+                      </label>
+                      <input
+                        type="text"
+                        class="w-full border rounded-md border-gray5 h-[2.9rem]"
+                      />
+                    </div>
+                    <div>
+                      <label class="block mb-2 text-black1">
+                        Billing Building No.
+                      </label>
+                      <input
+                        type="text"
+                        class="w-full border rounded-md border-gray5 h-[2.9rem]"
+                      />
+                    </div>
+                    <div>
+                      <label class="block mb-2 text-black1">
+                        Billing District
+                      </label>
+                      <input
+                        type="text"
+                        class="w-full border rounded-md border-gray5 h-[2.9rem]"
+                      />
+                    </div>
+                    <div>
+                      <label class="block mb-2 text-black1">
+                        Billing City
+                      </label>
+                      <input
+                        type="text"
+                        class="w-full border rounded-md border-gray5 h-[2.9rem]"
+                      />
+                    </div>
+                    <div>
+                      <label class="block mb-2 text-black1">
+                        Billing Email
+                      </label>
+                      <input
+                        type="text"
+                        class="w-full border rounded-md border-gray5 h-[2.9rem]"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Action Buttons -->
+                  <div
+                    class="flex flex-col justify-center gap-3 mt-6 md:flex-row"
+                  >
+                    <button
+                      type="button"
+                      class="px-16 py-4 mr-4 font-bold bg-gray-200 rounded-md border-gray1 text-blue1"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      class="px-16 py-4 mr-4 font-bold text-white rounded-md border-gray1 bg-blue1"
+                    >
+                      Save
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

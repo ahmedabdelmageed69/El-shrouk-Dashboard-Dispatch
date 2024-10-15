@@ -1,0 +1,16 @@
+.tab-content {
+    height: 100% !important;
+}
+
+.form-group {
+    margin: 12px 0 !important;
+}
+
+.form-group label {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+}
+
+button {
+    margin: 12px 0 !important;
+}

@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reports</title>
+    <script defer src="/src/js/main.js"></script>
+    <link rel="stylesheet" href="/src/css/output.css" />
+  </head>
+  <body>
+    <main>
+      <div class="relative flex transition-all">
+        <!-- Sidebar -->
+        <div
+          class="lg:w-[260px] overflow-hidden fixed lg:sticky top-0 lg:left-0 left-full h-screen z-50"
+          id="sidebar"
+        >
+          <div
+            class="w-full h-screen bg-sidebar rounded-tr-[32px] rounded-br-[32px] p-6 py-16"
+          >
+            <img
+              src="/src/assets/images/logo.png"
+              class="sidebar_logo"
+              alt=""
+            />
+
+            <button
+              type="button"
+              id="sidebar_toggle"
+              class="w-7 h-7 rounded-full bg-white border border-gray1 justify-center items-center lg:flex hidden absolute -right-2.5 top-6 shadow-xl"
+            >
+              <img src="/src/assets/icons/arrow-left.svg" alt="" />
+            </button>
+            <button
+              type="button"
+              id="sidebar_toggle"
+              class="absolute flex items-center justify-center bg-white border rounded-full shadow-xl w-7 h-7 border-gray1 lg:hidden right-5 top-5"
+              onclick="closeSidebarInMobile()"
+            >
+              <img src="/src/assets/icons/arrow-left.svg" alt="" />
+            </button>
+
+            <div class="flex flex-col gap-4 mt-10">
+              <!-- Dashboard -->
+              <a
+                href="/index.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <img src="/src/assets/icons/dashboardIcon.svg" alt="" />
+                <h3 class="text-sm sidebar_page_title" id="sidebar-page-label">
+                  Dashboard
+                </h3>
+              </a>
+
+              <!-- Dispatcher -->
+              <a
+                href="/dispatcher.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <img src="/src/assets/icons/dispatcherIcon.svg" alt="" />
+                <h3 class="text-sm sidebar_page_title sidebar-page-label">
+                  Dispatcher
+                </h3>
+              </a>
+
+              <!-- Operators -->
+              <div class="relative">
+                <button
+                  class="flex items-center justify-between w-full gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+                  id="sidebar_operators"
+                >
+                  <div class="flex gap-4">
+                    <img src="/src/assets/icons/operatorsIcon.svg" alt="" />
+                    <h3
+                      class="text-sm sidebar_page_title"
+                      id="sidebar-page-label"
+                    >
+                      Operators
+                    </h3>
+                  </div>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="sidebar_page_title"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M2.69041 4.6037C2.49712 4.80251 2.49712 5.12485 2.69041 5.32366L6.65 9.39639C6.74283 9.49186 6.86872 9.5455 6.99999 9.5455C7.13125 9.5455 7.25715 9.49186 7.34997 9.39639L11.3096 5.32366C11.5029 5.12485 11.5029 4.80251 11.3096 4.6037C11.1163 4.40489 10.8029 4.40489 10.6096 4.6037L6.99999 8.31644L3.39037 4.6037C3.19708 4.40489 2.8837 4.40489 2.69041 4.6037Z"
+                      fill="#fff"
+                    />
+                  </svg>
+                </button>
+
+                <!-- opt -->
+                <div class="flex-col" id="sidebar_operators_list">
+                  <a
+                    href="/operators.html"
+                    class="relative flex items-center justify-start h-10 gap-4 p-4 text-white bg-transparent rounded-full after:w-[1px] after:h-8 after:bg-white after:absolute after:left-[22px] after:top-6"
+                  >
+                    <span
+                      class="relative flex w-[14px] h-[14px] bg-blue1 z-10 rounded-full"
+                    ></span>
+                    <h3 class="text-sm sidebar-page-label">Operators</h3>
+                  </a>
+                  <a
+                    href="/operators-billings.html"
+                    class="relative flex items-center justify-start h-10 gap-4 p-4 text-white bg-transparent rounded-full after:w-[1px] after:h-8 after:bg-white after:absolute after:left-[22px] after:top-6"
+                  >
+                    <span
+                      class="relative flex w-[14px] h-[14px] bg-white rounded-full"
+                    ></span>
+                    <h3 class="text-sm sidebar-page-label">
+                      Operators Billings
+                    </h3>
+                  </a>
+                  <a
+                    href="/permits.html"
+                    class="flex items-center justify-start h-10 gap-4 p-4 text-white bg-transparent rounded-full"
+                  >
+                    <span
+                      class="relative flex w-[14px] h-[14px] bg-white rounded-full"
+                    ></span>
+                    <h3 class="text-sm sidebar-page-label">Permits</h3>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Clients -->
+              <a
+                href="/clients.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <img src="/src/assets/icons/clientsIcon.svg" alt="" />
+                <h3 class="text-sm sidebar_page_title">Clients</h3>
+              </a>
+
+              <!-- Users -->
+              <a
+                href="/users.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <img src="/src/assets/icons/usersIcon.svg" alt="" />
+                <h3 class="text-sm sidebar_page_title">Users</h3>
+              </a>
+
+              <!-- Vehicles -->
+              <a
+                href="/vehicles.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <img src="/src/assets/icons/vehiclesIcon.svg" alt="" />
+                <h3 class="text-sm sidebar_page_title">Vehicles</h3>
+              </a>
+
+              <!-- Orders -->
+              <a
+                href="/orders.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <img src="/src/assets/icons/ordersIcon.svg" alt="" />
+                <h3 class="text-sm sidebar_page_title">Orders</h3>
+              </a>
+
+              <!-- Reports -->
+              <a
+                href="/reports.html"
+                class="flex items-center justify-start gap-4 p-4 text-white bg-transparent rounded-full sidebar_page_item"
+              >
+                <img src="/src/assets/icons/reportsIcon.svg" alt="" />
+                <h3 class="text-sm sidebar_page_title">Reports</h3>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reports -->
+        <div class="w-full h-screen overflow-y-scroll">
+          <!-- Navbar -->
+          <div
+            class="h-[4.7rem] w-full flex justify-between border-b border-b-gray1 bg-gray2 items-center px-6"
+          >
+            <div class="flex items-center gap-2">
+              <button
+                type="button"
+                class="flex w-10 h-10 p-3 border rounded-lg lg:hidden"
+                onclick="openSidebarInMobile()"
+              >
+                <img src="/src/assets/icons/menu-toggle.svg" alt="" />
+              </button>
+              <h2 class="text-sm md:text-2xl">Operators</h2>
+            </div>
+
+            <div class="flex items-center gap-2 md:gap-5">
+              <!-- Search -->
+              <div
+                class="flex items-center justify-center w-10 h-10 gap-3 bg-white border rounded-full md:w-auto md:h-auto md:p-2 md:px-4 border-gray1"
+              >
+                <!-- Icon -->
+                <svg
+                  width="22"
+                  height="23"
+                  viewBox="0 0 22 23"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M10.5416 3.02075C6.11186 3.02075 2.52081 6.6118 2.52081 11.0416C2.52081 15.4714 6.11186 19.0624 10.5416 19.0624C14.9714 19.0624 18.5625 15.4714 18.5625 11.0416C18.5625 6.6118 14.9714 3.02075 10.5416 3.02075ZM1.14581 11.0416C1.14581 5.85241 5.35247 1.64575 10.5416 1.64575C15.7308 1.64575 19.9375 5.85241 19.9375 11.0416C19.9375 16.2308 15.7308 20.4374 10.5416 20.4374C5.35247 20.4374 1.14581 16.2308 1.14581 11.0416Z"
+                    fill="#A30133"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M17.8472 18.3471C18.1157 18.0786 18.551 18.0786 18.8194 18.3471L20.6528 20.1804C20.9213 20.4489 20.9213 20.8842 20.6528 21.1527C20.3843 21.4212 19.949 21.4212 19.6805 21.1527L17.8472 19.3194C17.5787 19.0509 17.5787 18.6156 17.8472 18.3471Z"
+                    fill="#A30133"
+                  />
+                </svg>
+
+                <!-- Input -->
+                <input
+                  type="text"
+                  placeholder="Search for anything..."
+                  class="hidden outline-none md:flex"
+                />
+              </div>
+
+              <!-- Message Icon -->
+              <button
+                type="button"
+                class="flex items-center justify-center w-10 h-10 bg-white border rounded-full md:w-12 md:h-12 border-gray1"
+              >
+                <svg
+                  width="24"
+                  height="25"
+                  viewBox="0 0 24 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9 22.5H15C20 22.5 22 20.5 22 15.5V9.5C22 4.5 20 2.5 15 2.5H9C4 2.5 2 4.5 2 9.5V15.5C2 20.5 4 22.5 9 22.5Z"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M2 13.5H5.76C6.52 13.5 7.21 13.93 7.55 14.61L8.44 16.4C9 17.5 10 17.5 10.24 17.5H13.77C14.53 17.5 15.22 17.07 15.56 16.39L16.45 14.6C16.79 13.92 17.48 13.49 18.24 13.49H21.98"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M10.34 7.5H13.67"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M9.5 10.5H14.5"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+
+              <!-- Notification Icon -->
+              <button
+                type="button"
+                class="flex items-center justify-center w-12 h-12 bg-white border rounded-full border-gray1"
+              >
+                <svg
+                  width="24"
+                  height="25"
+                  viewBox="0 0 24 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 6.93994V10.2699"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M12.02 2.5C8.34002 2.5 5.36002 5.48 5.36002 9.16V11.26C5.36002 11.94 5.08002 12.96 4.73002 13.54L3.46002 15.66C2.68002 16.97 3.22002 18.43 4.66002 18.91C9.44002 20.5 14.61 20.5 19.39 18.91C20.74 18.46 21.32 16.88 20.59 15.66L19.32 13.54C18.97 12.96 18.69 11.93 18.69 11.26V9.16C18.68 5.5 15.68 2.5 12.02 2.5Z"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M15.33 19.3201C15.33 21.1501 13.83 22.6501 12 22.6501C11.09 22.6501 10.25 22.2701 9.64998 21.6701C9.04998 21.0701 8.66998 20.2301 8.66998 19.3201"
+                    stroke="#A30133"
+                    stroke-width="1.5"
+                    stroke-miterlimit="10"
+                  />
+                </svg>
+              </button>
+
+              <!-- User -->
+              <div class="relative">
+                <button
+                  id="navbar_selectbox"
+                  class="flex items-center justify-center gap-3 p-2 bg-white border rounded-full border-gray1"
+                >
+                  <img
+                    src="/src/assets/images/user.jpg"
+                    alt="User Avatar"
+                    class="object-cover rounded-full min-w-9 min-h-9 w-9 h-9"
+                  />
+                  <div class="hidden md:flex">
+                    <div class="flex flex-col">
+                      <h4 class="text-sm">Alex meian</h4>
+                      <p class="text-xs text-gray3">Prodcut manager</p>
+                    </div>
+                  </div>
+                  <span class="hidden text-sm md:flex">
+                    <img src="/src/assets/icons/arrow-bottom.svg" alt="" />
+                  </span>
+                </button>
+
+                <div
+                  class="absolute right-0 flex-col hidden w-40 py-2 bg-white rounded-lg shadow-lg md:w-full top-14 md:right-auto"
+                  id="navbar_selectbox_inner"
+                >
+                  <!-- Settings -->
+                  <a href="/system_settings.html" class="w-full">
+                    <button
+                      type="button"
+                      class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray2"
+                    >
+                      <!-- label -->
+                      <h3 class="text-xs">System Setting</h3>
+
+                      <!-- Icon -->
+                      <img src="/src/assets/icons/setting.svg" alt="" />
+                    </button>
+                  </a>
+
+                  <!-- Logout -->
+                  <button
+                    type="button"
+                    class="flex items-center justify-between px-4 py-2 hover:bg-gray2"
+                    id="logout"
+                  >
+                    <!-- label -->
+                    <h3 class="text-xs">Log out</h3>
+
+                    <!-- Icon -->
+                    <img src="/src/assets/icons/logout.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col h-screen p-6">
+            <div class="flex flex-col justify-between md:flex-row">
+              <div class="flex items-start gap-3 mb-8">
+                <a href="/operators.html">
+                  <button
+                    type="button"
+                    class="flex items-center justify-center w-8 h-8 bg-white border rounded-full border-gray1"
+                  >
+                    <img src="/src/assets/icons/arrow-narrow-left.svg" alt="" />
+                  </button>
+                </a>
+                <div class="flex flex-col gap-3">
+                  <h2 class="text-sm md:text-2xl">Operator Report Generator</h2>
+                  <p class="flex items-center gap-2 text-sm text-gray13">
+                    <span>Operators</span>
+                    <!-- Icon -->
+                    <span>
+                      <svg
+                        width="10"
+                        height="9"
+                        viewBox="0 0 10 9"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1 7.83341L4.33333 4.50008L1 1.16675M5.66667 7.83341L9 4.50008L5.66667 1.16675"
+                          stroke="#506373"
+                          stroke-width="1.4"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+                    <span>Operator Report</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Filter -->
+            <div
+              class="h-16 px-4 py-3 mb-4 transition-all duration-300 bg-white border rounded-lg border-gray1"
+              id="filter-body"
+            >
+              <button
+                type="button"
+                class="flex items-center justify-between w-full"
+                id="filter-btn"
+              >
+                <span>Report Detail</span>
+
+                <span
+                  class="flex items-center justify-center bg-white border rounded-lg w-9 h-9 border-gray1"
+                  id="filter-icon"
+                >
+                  <img src="/src/assets/icons/arrow-right-table.svg" alt="" />
+                </span>
+              </button>
+
+              <!-- Form -->
+              <form
+                class="hidden grid-cols-2 mt-6 lg:gap-x-32 gap-x-2 gap-y-6"
+                id="filter-body-inner"
+              >
+                <!-- Report Name Input -->
+                <div class="relative flex flex-col w-full gap-3 custom-select">
+                  <!-- Select button to show the current selection -->
+                  <span>Report Name</span>
+                  <button
+                    id="selectButton"
+                    class="relative w-full h-12 px-4 py-2 text-left bg-white border border-gray-300 rounded-md shadow-sm select-button focus:border-mainColor focus:outline-none"
+                    aria-haspopup="listbox"
+                    type="button"
+                  >
+                    <span
+                      id="selectedOption"
+                      class="block truncate selected-option"
+                    >
+                      <!-- Select an option -->
+                    </span>
+                    <span
+                      class="h-4 w-[1px] bg-gray11 absolute right-10 top-1/2 -translate-y-1/2"
+                    ></span>
+                    <span
+                      class="absolute inset-y-0 flex items-center px-2 -translate-y-1/2 pointer-events-none right-2 top-1/2"
+                    >
+                      <!-- Downward arrow icon -->
+                      <svg
+                        class="w-4 h-4 text-gray-500"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+
+                  <!-- Dropdown options -->
+                  <ul
+                    id="selectOptions"
+                    class="absolute z-50 hidden w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg select-options top-20"
+                  >
+                    <li
+                      class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                      onclick="selectOption(this)"
+                    >
+                      Khaled Mohamed
+                    </li>
+                    <li
+                      class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                      onclick="selectOption(this)"
+                    >
+                      Mohamed Hassan
+                    </li>
+                    <li
+                      class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                      onclick="selectOption(this)"
+                    >
+                      Khalaf Shahwan
+                    </li>
+                    <li
+                      class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                      onclick="selectOption(this)"
+                    >
+                      Sameh Abdo
+                    </li>
+                  </ul>
+                </div>
+                <!-- Driver Selectbox -->
+                <div class="relative flex flex-col w-full gap-3 custom-select">
+                  <!-- Select button to show the current selection -->
+                  <span>Type</span>
+                  <button
+                    id="selectButton"
+                    class="relative w-full h-12 px-4 py-2 text-left bg-white border border-gray-300 rounded-md shadow-sm select-button focus:border-mainColor focus:outline-none"
+                    aria-haspopup="listbox"
+                    type="button"
+                  >
+                    <span
+                      id="selectedOption"
+                      class="block truncate selected-option"
+                    >
+                      <!-- Select an option -->
+                    </span>
+                    <span
+                      class="h-4 w-[1px] bg-gray11 absolute right-10 top-1/2 -translate-y-1/2"
+                    ></span>
+                    <span
+                      class="absolute inset-y-0 flex items-center px-2 -translate-y-1/2 pointer-events-none right-2 top-1/2"
+                    >
+                      <!-- Downward arrow icon -->
+                      <svg
+                        class="w-4 h-4 text-gray-500"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+
+                  <!-- Dropdown options -->
+                  <ul
+                    id="selectOptions"
+                    class="absolute z-50 hidden w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg select-options top-20"
+                  >
+                    <li
+                      class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                      onclick="selectOption(this)"
+                    >
+                      Type 1
+                    </li>
+                    <li
+                      class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                      onclick="selectOption(this)"
+                    >
+                      Type 2
+                    </li>
+                    <li
+                      class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                      onclick="selectOption(this)"
+                    >
+                      Type 3
+                    </li>
+                    <li
+                      class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                      onclick="selectOption(this)"
+                    >
+                      Type 4
+                    </li>
+                  </ul>
+                </div>
+                <!-- Creation Date Input -->
+                <div class="relative flex flex-col w-full gap-3">
+                  <label for="date">Data Range </label>
+                  <input
+                    type="date"
+                    id="date"
+                    class="w-full h-12 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:ring-mainColor focus:border-mainColor"
+                  />
+                </div>
+
+                <!-- Button -->
+                <div class="flex items-center justify-center md:justify-end">
+                  <button
+                    type="button"
+                    class="flex gap-3 p-3 px-8 text-white rounded-md bg-green1"
+                  >
+                    <img src="/src/assets/icons/book-white.svg" alt="" />
+
+                    <span>Export Report</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+            <!-- Table -->
+            <div class="p-4 bg-white border rounded-lg border-gray1">
+              <!-- Navigation Tabs -->
+              <div
+                class="flex flex-col items-center justify-between mb-4 border-b md:flex-row"
+              >
+                <div class="flex flex-col mb-3">
+                  <h3 class="mb-2 text-base font-medium text-black">
+                    Operator Report
+                  </h3>
+                </div>
+                <!-- Search -->
+                <div
+                  class="flex items-center justify-start gap-3 p-4 px-4 mb-3 bg-white border rounded-full md:w-96 border-gray1"
+                >
+                  <!-- Icon -->
+                  <svg
+                    width="22"
+                    height="23"
+                    viewBox="0 0 22 23"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M10.5416 3.02075C6.11186 3.02075 2.52081 6.6118 2.52081 11.0416C2.52081 15.4714 6.11186 19.0624 10.5416 19.0624C14.9714 19.0624 18.5625 15.4714 18.5625 11.0416C18.5625 6.6118 14.9714 3.02075 10.5416 3.02075ZM1.14581 11.0416C1.14581 5.85241 5.35247 1.64575 10.5416 1.64575C15.7308 1.64575 19.9375 5.85241 19.9375 11.0416C19.9375 16.2308 15.7308 20.4374 10.5416 20.4374C5.35247 20.4374 1.14581 16.2308 1.14581 11.0416Z"
+                      fill="#A30133"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M17.8472 18.3471C18.1157 18.0786 18.551 18.0786 18.8194 18.3471L20.6528 20.1804C20.9213 20.4489 20.9213 20.8842 20.6528 21.1527C20.3843 21.4212 19.949 21.4212 19.6805 21.1527L17.8472 19.3194C17.5787 19.0509 17.5787 18.6156 17.8472 18.3471Z"
+                      fill="#A30133"
+                    />
+                  </svg>
+
+                  <!-- Input -->
+                  <input
+                    type="text"
+                    placeholder="Search here..."
+                    class="outline-none"
+                  />
+                </div>
+              </div>
+
+              <!-- Table -->
+              <div class="w-full overflow-x-auto">
+                <table
+                  class="w-full text-sm text-left text-gray-700 xl:table-fixed"
+                >
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th class="px-4 py-3 font-medium">Name</th>
+                      <th class="w-32 px-4 py-3 font-medium">ID</th>
+                      <th class="px-4 py-3 font-medium">Status</th>
+                      <th class="w-[15%] px-4 py-3 font-medium">Type</th>
+                      <th class="w-[15%] px-4 py-3 font-medium">From</th>
+                      <th class="px-4 py-3 font-medium">To</th>
+                      <th class="px-4 py-3 font-medium">Created by</th>
+                      <th class="px-4 py-3 font-medium">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody class="odd:bg-gray-100">
+                    <tr>
+                      <td class="px-4 py-2">234e23</td>
+                      <td class="px-4 py-4">33824</td>
+                      <td class="px-4 py-4">
+                        <div class="flex items-center justify-start">
+                          <div
+                            class="flex items-center justify-center gap-2 px-2 py-1 text-white rounded-lg bg-green4"
+                          >
+                            <span class="w-2 h-2 bg-white rounded-full"></span>
+                            <span>Success</span>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td class="px-4 py-4">xlsx</td>
+                      <td class="px-4 py-4">2024-09-02</td>
+                      <td class="px-4 py-4">2024-09-18</td>
+                      <td class="px-4 py-4">
+                        <div class="flex flex-col">
+                          <p class="text-xs text-black1">01:05 AM</p>
+                          <p class="text-[10px] text-gray6">27/Jan/2022</p>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img
+                              src="/src/assets/icons/hashtag-down.svg"
+                              alt=""
+                            />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2">
+                        <span>234e23</span>
+                      </td>
+                      <td class="px-4 py-4">33824</td>
+                      <td class="px-4 py-4">
+                        <div class="flex items-center justify-start">
+                          <div
+                            class="flex items-center justify-center gap-2 px-2 py-1 text-white rounded-lg bg-green4"
+                          >
+                            <span class="w-2 h-2 bg-white rounded-full"></span>
+                            <span>Success</span>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td class="px-4 py-4">xlsx</td>
+                      <td class="px-4 py-4">2024-09-02</td>
+                      <td class="px-4 py-4">2024-09-18</td>
+                      <td class="px-4 py-4">
+                        <div class="flex flex-col">
+                          <p class="text-xs text-black1">01:05 AM</p>
+                          <p class="text-[10px] text-gray6">27/Jan/2022</p>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img
+                              src="/src/assets/icons/hashtag-down.svg"
+                              alt=""
+                            />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2">
+                        <span>234e23</span>
+                      </td>
+                      <td class="px-4 py-4">33824</td>
+                      <td class="px-4 py-4">
+                        <div class="flex items-center justify-start">
+                          <div
+                            class="flex items-center justify-center gap-2 px-2 py-1 text-white rounded-lg bg-green4"
+                          >
+                            <span class="w-2 h-2 bg-white rounded-full"></span>
+                            <span>Success</span>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td class="px-4 py-4">xlsx</td>
+                      <td class="px-4 py-4">2024-09-02</td>
+                      <td class="px-4 py-4">2024-09-18</td>
+                      <td class="px-4 py-4">
+                        <div class="flex flex-col">
+                          <p class="text-xs text-black1">01:05 AM</p>
+                          <p class="text-[10px] text-gray6">27/Jan/2022</p>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img
+                              src="/src/assets/icons/hashtag-down.svg"
+                              alt=""
+                            />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2">
+                        <span>234e23</span>
+                      </td>
+                      <td class="px-4 py-4">33824</td>
+                      <td class="px-4 py-4">
+                        <div class="flex items-center justify-start">
+                          <div
+                            class="flex items-center justify-center gap-2 px-2 py-1 text-white rounded-lg bg-green4"
+                          >
+                            <span class="w-2 h-2 bg-white rounded-full"></span>
+                            <span>Success</span>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td class="px-4 py-4">xlsx</td>
+                      <td class="px-4 py-4">2024-09-02</td>
+                      <td class="px-4 py-4">2024-09-18</td>
+                      <td class="px-4 py-4">
+                        <div class="flex flex-col">
+                          <p class="text-xs text-black1">01:05 AM</p>
+                          <p class="text-[10px] text-gray6">27/Jan/2022</p>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img
+                              src="/src/assets/icons/hashtag-down.svg"
+                              alt=""
+                            />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2">
+                        <span>234e23</span>
+                      </td>
+                      <td class="px-4 py-4">33824</td>
+                      <td class="px-4 py-4">
+                        <div class="flex items-center justify-start">
+                          <div
+                            class="flex items-center justify-center gap-2 px-2 py-1 text-white rounded-lg bg-green4"
+                          >
+                            <span class="w-2 h-2 bg-white rounded-full"></span>
+                            <span>Success</span>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td class="px-4 py-4">xlsx</td>
+                      <td class="px-4 py-4">2024-09-02</td>
+                      <td class="px-4 py-4">2024-09-18</td>
+                      <td class="px-4 py-4">
+                        <div class="flex flex-col">
+                          <p class="text-xs text-black1">01:05 AM</p>
+                          <p class="text-[10px] text-gray6">27/Jan/2022</p>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img
+                              src="/src/assets/icons/hashtag-down.svg"
+                              alt=""
+                            />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2">
+                        <span>234e23</span>
+                      </td>
+                      <td class="px-4 py-4">33824</td>
+                      <td class="px-4 py-4">
+                        <div class="flex items-center justify-start">
+                          <div
+                            class="flex items-center justify-center gap-2 px-2 py-1 text-white rounded-lg bg-green4"
+                          >
+                            <span class="w-2 h-2 bg-white rounded-full"></span>
+                            <span>Success</span>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td class="px-4 py-4">xlsx</td>
+                      <td class="px-4 py-4">2024-09-02</td>
+                      <td class="px-4 py-4">2024-09-18</td>
+                      <td class="px-4 py-4">
+                        <div class="flex flex-col">
+                          <p class="text-xs text-black1">01:05 AM</p>
+                          <p class="text-[10px] text-gray6">27/Jan/2022</p>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img
+                              src="/src/assets/icons/hashtag-down.svg"
+                              alt=""
+                            />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-2">
+                        <span>234e23</span>
+                      </td>
+                      <td class="px-4 py-4">33824</td>
+                      <td class="px-4 py-4">
+                        <div class="flex items-center justify-start">
+                          <div
+                            class="flex items-center justify-center gap-2 px-2 py-1 text-white rounded-lg bg-green4"
+                          >
+                            <span class="w-2 h-2 bg-white rounded-full"></span>
+                            <span>Success</span>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td class="px-4 py-4">xlsx</td>
+                      <td class="px-4 py-4">2024-09-02</td>
+                      <td class="px-4 py-4">2024-09-18</td>
+                      <td class="px-4 py-4">
+                        <div class="flex flex-col">
+                          <p class="text-xs text-black1">01:05 AM</p>
+                          <p class="text-[10px] text-gray6">27/Jan/2022</p>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="flex gap-4 px-4 py-4">
+                          <button
+                            class="flex items-center justify-center w-8 h-8 text-white border rounded-lg border-gray10"
+                          >
+                            <img
+                              src="/src/assets/icons/hashtag-down.svg"
+                              alt=""
+                            />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Pagination -->
+            <div
+              class="flex flex-col items-center justify-between gap-4 mt-4 md:flex-row"
+            >
+              <div>
+                <label for="itemsPerPage" class="font-normal text-gray11">
+                  Number of items
+                </label>
+                <select id="itemsPerPage" class="px-2 py-1 border rounded">
+                  <option>10</option>
+                  <option>20</option>
+                  <option>50</option>
+                </select>
+              </div>
+              <div class="flex space-x-2">
+                <button
+                  class="flex items-center justify-center bg-white border rounded w-9 h-9 border-gray10"
+                >
+                  <img src="/src/assets/icons/arrow-left-table.svg" alt="" />
+                </button>
+                <button class="text-white rounded bg-mainColor w-9 h-9">
+                  1
+                </button>
+                <button class="bg-white border rounded w-9 h-9 border-gray10">
+                  2
+                </button>
+                <button class="bg-white border rounded w-9 h-9 border-gray10">
+                  3
+                </button>
+                <button class="bg-white border rounded w-9 h-9 border-gray10">
+                  ...
+                </button>
+                <button class="bg-white border rounded w-9 h-9 border-gray10">
+                  10
+                </button>
+                <button
+                  class="flex items-center justify-center bg-white border rounded w-9 h-9 border-gray10"
+                >
+                  <img src="/src/assets/icons/arrow-right-table.svg" alt="" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </body>
+</html>

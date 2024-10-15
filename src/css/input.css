@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-color: #F9F9F9;
+}
+
+
+
+
+.toggle-checkbox:checked+label .toggle-circle {
+    transform: translateX(0.8rem);
+}
+
+.toggle-checkbox:checked+label .toggle-path {
+    background-color: #34C759;
+}
+
+.toggle-checkbox+label .toggle-path {
+    background-color: #DDDDDD;
+}
