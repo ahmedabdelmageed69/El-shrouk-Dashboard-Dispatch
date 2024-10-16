@@ -4,33 +4,72 @@
 const navbarSelectbox = document.getElementById('navbar_selectbox');
 const navbarSelectboxInner = document.getElementById('navbar_selectbox_inner');
 
-navbarSelectbox.addEventListener('click', function () {
-    if (navbarSelectboxInner.classList.contains("hidden")) {
-        navbarSelectboxInner.classList.remove('hidden');
-        navbarSelectboxInner.classList.add('flex');
+if (navbarSelectbox) {
+    navbarSelectbox.addEventListener('click', function () {
+        if (navbarSelectboxInner.classList.contains("hidden")) {
+            navbarSelectboxInner.classList.remove('hidden');
+            navbarSelectboxInner.classList.add('flex');
 
-    } else {
-        navbarSelectboxInner.classList.remove('flex');
-        navbarSelectboxInner.classList.add('hidden');
-    }
-});
+        } else {
+            navbarSelectboxInner.classList.remove('flex');
+            navbarSelectboxInner.classList.add('hidden');
+        }
+    });
 
-// Close the select box when clicking outside
-document.addEventListener('click', function (event) {
-    if (!navbarSelectbox.contains(event.target) && !navbarSelectboxInner.contains(event.target)) {
-        navbarSelectboxInner.classList.remove('flex');
-        navbarSelectboxInner.classList.add('hidden');
-    }
-});
+    // Close the select box when clicking outside
+    document.addEventListener('click', function (event) {
+        if (!navbarSelectbox.contains(event.target) && !navbarSelectboxInner.contains(event.target)) {
+            navbarSelectboxInner.classList.remove('flex');
+            navbarSelectboxInner.classList.add('hidden');
+        }
+    });
+}
+
+// ------------------------------------------------------------------------------------------------
+
+// login Slider 
+
+
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+
+let currentIndex = 0;
+if (dots && slides) {
+    showSlides();
+}
+
+function showSlides() {
+   
+    slides.forEach((slide, index) => {
+        slide.style.transform = `translateX(${-currentIndex * 100}%)`;
+        dots[index].classList.remove('active');
+    });
+
+    dots[currentIndex]?.classList.add('active');
+    currentIndex = (currentIndex + 1) % slides.length;
+
+    // setTimeout(showSlides, 3000); // Change slide every 3 seconds
+}
+
+function currentSlide(index) {
+    currentIndex = index - 1;
+    showSlides();
+}
+
+
+
 
 // ------------------------------------------------------------------------------------------------
 
 // Logout
 const logoutBtn = document.getElementById('logout');
 
-logoutBtn.addEventListener("click", function () {
-    window.location.href = "login.html";
-})
+if (logoutBtn) {
+    logoutBtn.addEventListener("click", function () {
+        window.location.href = "login.html";
+    })
+
+}   
 
 // ------------------------------------------------------------------------------------------------
 
@@ -70,16 +109,20 @@ const sidebarPageItem = document.querySelectorAll("#sidebar .sidebar_page_item")
 const sidebarOperators = document.getElementById('sidebar_operators');
 const sidebarOperatorsItems = document.getElementById('sidebar_operators_list');
 
-sidebarOperators.addEventListener("click", function () {
-    if (sidebarOperatorsItems.classList.contains('hidden')) {
-        sidebarOperatorsItems.classList.remove('hidden');
-        sidebarOperatorsItems.classList.add('flex');
-        sidebarCloseStyles()
-    } else {
-        sidebarOperatorsItems.classList.remove('flex');
-        sidebarOperatorsItems.classList.add('hidden');
-    }
-});
+if (sidebarOperators) {
+
+    sidebarOperators.addEventListener("click", function () {
+        if (sidebarOperatorsItems.classList.contains('hidden')) {
+            sidebarOperatorsItems.classList.remove('hidden');
+            sidebarOperatorsItems.classList.add('flex');
+            sidebarCloseStyles()
+        } else {
+            sidebarOperatorsItems.classList.remove('flex');
+            sidebarOperatorsItems.classList.add('hidden');
+        }
+    });
+}
+
 
 const sidebarOpenStyles = () => {
     sidebarLogo.classList.add("hidden")
@@ -135,13 +178,17 @@ function closeSidebarInMobile() {
     // sidebar.classList.add('left-full');
 }
 
-sidebarToggle.addEventListener("click", function () {
+if (sidebarToggle) {
+    sidebarToggle.addEventListener("click", function () {
     if (sidebar.classList.contains('lg:w-[260px]')) {
         sidebarOpenStyles()
     } else {
         sidebarCloseStyles()
     }
 });
+}
+
+
 
 // ------------------------------------------------------------------------------------------------
 

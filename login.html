@@ -13,34 +13,73 @@
         class="relative flex items-center justify-center w-full h-screen bg-gray16"
       >
         <!-- Login Box -->
-        <div class="w-7/12 p-10 bg-white rounded-2xl">
-          <div class="grid grid-cols-[1fr_1px_1fr] gap-10 items-center">
-            <!-- Images Slider -->
-            <div class="flex flex-col">
-              <img src="/src/assets/images/Express Delivery.png" alt="" />
-              <h2 class="text-xl font-semibold text-black1">
-                Welcome to Alshrouq Express
-              </h2>
-              <p class="mt-4 text-sm text-gray6">
-                Dorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                vulputate libero et velit interdum, ac aliquet odio mattis.
-              </p>
-              <div class="flex justify-center gap-2 mt-8">
-                <span class="w-2.5 h-2.5 rounded-full bg-gray1"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-mainColor"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-gray1"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-gray1"></span>
+        <div class="p-10 bg-white xl:w-7/12 rounded-2xl">
+          <div
+            class="grid grid-cols-1 md:grid-cols-[1fr_1px_1fr] gap-10 items-center"
+          >
+            <div class="mt-20 md:mt-0">
+              <div class="slider">
+                <div class="slides">
+                  <div class="slide">
+                    <img
+                      src="/src/assets/images/Express Delivery.png"
+                      alt="Slide 1"
+                    />
+                    <h2 class="text-xl font-semibold text-black1">
+                      Welcome to Alshrouq Express
+                    </h2>
+                    <p class="mt-4 text-sm text-gray6">
+                      Dorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Nunc vulputate libero et velit interdum, ac aliquet odio
+                      mattis.
+                    </p>
+                  </div>
+                  <div class="slide">
+                    <img
+                      src="/src/assets/images/Express Delivery.png"
+                      alt="Slide 2"
+                    />
+                    <h2 class="text-xl font-semibold text-black1">
+                      Welcome to Alshrouq Express
+                    </h2>
+                    <p class="mt-4 text-sm text-gray6">
+                      Dorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Nunc vulputate libero et velit interdum, ac aliquet odio
+                      mattis.
+                    </p>
+                  </div>
+                  <div class="slide">
+                    <img
+                      src="/src/assets/images/Express Delivery.png"
+                      alt="Slide 3"
+                    />
+                    <h2 class="text-xl font-semibold text-black1">
+                      Welcome to Alshrouq Express
+                    </h2>
+                    <p class="mt-4 text-sm text-gray6">
+                      Dorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Nunc vulputate libero et velit interdum, ac aliquet odio
+                      mattis.
+                    </p>
+                  </div>
+                </div>
+                <!-- Navigation Dots -->
+                <div class="nav-dots">
+                  <span class="dot active" onclick="currentSlide(1)"></span>
+                  <span class="dot" onclick="currentSlide(2)"></span>
+                  <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
               </div>
             </div>
 
             <span class="w-[1px] h-3/4 bg-gray1"></span>
             <!-- Form -->
             <div class="flex flex-col">
-              <div>
-                <img src="/src/assets/images/logo-2.png" alt="" />
+              <div class="flex items-center justify-center md:justify-start">
+                <img src="/src/assets/images/logo-2.png" alt="" class="w-48" />
               </div>
 
-              <div class="flex flex-col gap-3 mt-5">
+              <div class="flex flex-col gap-3 mt-10 md:mt-5">
                 <h3 class="text-xl font-semibold text-black1">Sign in</h3>
                 <p class="text-sm text-gray6">Fill your data to sign in</p>
 
@@ -124,10 +163,16 @@
                 </form>
               </div>
             </div>
+
+            <div class="flex items-center justify-center md:hidden">
+              <img src="/src/assets/images/powerd-by.png" alt="" />
+            </div>
           </div>
         </div>
 
-        <div class="absolute bottom-8 left-1/2">
+        <div
+          class="absolute hidden -translate-x-1/2 bottom-8 left-1/2 md:block"
+        >
           <img src="/src/assets/images/powerd-by.png" alt="" />
         </div>
       </div>
