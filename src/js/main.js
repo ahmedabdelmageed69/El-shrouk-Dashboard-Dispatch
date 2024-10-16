@@ -567,8 +567,8 @@ const cityOrdersChart = new Chart(ctxCityOrders, {
                 position: 'right',
                 labels: {
                     usePointStyle: true,
-                    boxWidth: 80,
-                    padding: 40,
+                    boxWidth: 100,
+                    padding: 35,
                 }
             },
             tooltip: {
@@ -580,6 +580,7 @@ const cityOrdersChart = new Chart(ctxCityOrders, {
             }
         },
         responsive: true,
+        maintainAspectRatio: false
     }
 });
 

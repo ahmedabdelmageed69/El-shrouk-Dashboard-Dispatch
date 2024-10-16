@@ -24,6 +24,7 @@ module.exports = {
                 gray13: "#506373",
                 gray14: "#142533",
                 gray15: "#A1AEBE",
+                gary16: "#F5F6F7",
                 // black
                 black1: "#272727",
                 black2: "#060606",

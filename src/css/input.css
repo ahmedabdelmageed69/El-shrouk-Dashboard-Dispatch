@@ -7,8 +7,6 @@ body {
 }
 
 
-
-
 .toggle-checkbox:checked+label .toggle-circle {
     transform: translateX(0.8rem);
 }
