@@ -364,6 +364,714 @@
             </div>
           </div>
 
+          <!-- Drawer Overlay -->
+          <div
+            id="drawer-overlay"
+            class="fixed inset-0 z-50 hidden bg-black bg-opacity-50"
+          ></div>
+
+          <!-- Drawer -->
+          <div
+            id="drawer"
+            class="fixed top-0 right-0 z-50 min-h-full p-4 transition-transform transform translate-x-full bg-white shadow-lg md:w-1/2"
+          >
+            <div class="flex flex-col h-screen overflow-scroll">
+              <div class="flex items-center justify-between mb-6">
+                <h5 class="text-xl font-bold text-blue-gray-700">
+                  New Individual
+                </h5>
+                <button id="close-drawer" class="text-gray-500">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="w-5 h-5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <div class="flex flex-col gap-2 p-8 overflow-scroll">
+                <div class="flex flex-col">
+                  <h3 class="mb-4 text-xl font-medium">Information</h3>
+                  <label
+                    class="flex items-center justify-center w-20 h-20 bg-gray-200 rounded-full"
+                  >
+                    <input type="file" name="" class="hidden" id="" />
+                    <svg
+                      height="48"
+                      viewBox="0 0 48 48"
+                      width="48"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M24 8c-4.42 0-8 3.58-8 8 0 4.41 3.58 8 8 8s8-3.59 8-8c0-4.42-3.58-8-8-8zm0 20c-5.33 0-16 2.67-16 8v4h32v-4c0-5.33-10.67-8-16-8z"
+                        fill="gray"  <!-- Set color here -->
+                      />
+                      <path d="M0 0h48v48h-48z" fill="none" />
+                    </svg>
+                  </label>
+                  <div class="grid w-full gap-8 mt-5 lg:grid-cols-2">
+                    <!-- First Name -->
+                    <label class="flex flex-col w-full gap-2">
+                      <span>First Name</span>
+
+                      <input
+                        type="text"
+                        placeholder=""
+                        class="w-full h-12 p-2 px-4 border rounded-lg border-gray1 focus:outline-none focus:border-mainColor"
+                      />
+                    </label>
+                    <!-- Last Name -->
+                    <label class="flex flex-col w-full gap-2">
+                      <span>Last Name</span>
+
+                      <input
+                        type="text"
+                        placeholder=""
+                        class="w-full h-12 p-2 px-4 border rounded-lg border-gray1 focus:outline-none focus:border-mainColor"
+                      />
+                    </label>
+                    <!-- Phone -->
+                    <label class="flex flex-col w-full gap-2">
+                      <span>Phone</span>
+
+                      <input
+                        type="text"
+                        placeholder=""
+                        class="w-full h-12 p-2 px-4 border rounded-lg border-gray1 focus:outline-none focus:border-mainColor"
+                      />
+                    </label>
+                    <!-- Birth Date -->
+                    <label class="flex flex-col w-full gap-2">
+                      <span>Birth Date</span>
+
+                      <input
+                        type="date"
+                        placeholder=""
+                        class="w-full h-12 p-2 px-4 border rounded-lg border-gray1 focus:outline-none focus:border-mainColor"
+                      />
+                    </label>
+                    <!-- City -->
+                    <div class="relative flex flex-col w-full gap-3 custom-select">
+                      <span>City</span>
+                      <button
+                        id="selectButton"
+                        class="relative w-full h-12 px-4 py-2 text-left bg-white border border-gray-300 rounded-md shadow-sm select-button focus:border-mainColor focus:outline-none"
+                        aria-haspopup="listbox"
+                        type="button"
+                      >
+                        <span
+                          id="selectedOption"
+                          class="block truncate selected-option"
+                        >
+                          <!-- Select an option -->
+                        </span>
+                        <span
+                          class="h-4 w-[1px] bg-gray11 absolute right-10 top-1/2 -translate-y-1/2"
+                        ></span>
+                        <span
+                          class="absolute inset-y-0 flex items-center px-2 -translate-y-1/2 pointer-events-none right-2 top-1/2"
+                        >
+                          <!-- Downward arrow icon -->
+                          <svg
+                            class="w-4 h-4 text-gray-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                        </span>
+                      </button>
+
+                      <!-- Dropdown options -->
+                      <ul
+                        id="selectOptions"
+                        class="absolute z-50 hidden w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg select-options top-20"
+                      >
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Cairo
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          London
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Giza
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Paris
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- Social ID number -->
+                    <label class="flex flex-col w-full gap-2">
+                      <span>Social ID number</span>
+
+                      <input
+                        type="text"
+                        placeholder=""
+                        class="w-full h-12 p-2 px-4 border rounded-lg border-gray1 focus:outline-none focus:border-mainColor"
+                      />
+                    </label>
+                  </div>
+                </div>
+
+                <div class="flex flex-col w-full mt-8">
+                    <h3 class="mb-2 text-xl font-medium">More Details</h3>
+                    <div class="grid w-full grid-cols-1 gap-8 mt-5 md:grid-cols-2">
+                      <!-- Emergency contact name -->
+                      <label class="flex flex-col w-full gap-2">
+                        <span>Emergency contact name</span>
+
+                        <input
+                          type="text"
+                          placeholder=""
+                          class="w-full h-12 p-2 px-4 border rounded-lg border-gray1 focus:outline-none focus:border-mainColor"
+                        />
+                      </label>
+                      <!-- Emergency contact phone -->
+                      <label class="flex flex-col w-full gap-2">
+                        <span>Emergency contact phone</span>
+
+                        <input
+                          type="text"
+                          placeholder=""
+                          class="w-full h-12 p-2 px-4 border rounded-lg border-gray1 focus:outline-none focus:border-mainColor"
+                        />
+                      </label>
+
+                      <!-- License Front -->
+                      <div class="w-full file-upload-container">
+                        <label class="flex flex-col w-full gap-2">
+                            <span>License Front</span>
+                            <div class="flex items-center justify-center w-full h-12 text-gray-600 border border-gray-800 border-dashed rounded-md cursor-pointer bg-gray4">
+                                <span>Upload Image</span>
+                            </div>
+                            <input type="file" class="hidden" accept="image/*">
+                        </label>
+                      </div>
+
+                      <!-- License Back -->
+                      <div class="w-full file-upload-container">
+                        <label class="flex flex-col w-full gap-2">
+                            <span>License Back</span>
+                            <div class="flex items-center justify-center w-full h-12 text-gray-600 border border-gray-800 border-dashed rounded-md cursor-pointer bg-gray4">
+                                <span>Upload Image</span>
+                            </div>
+                            <input type="file" class="hidden" accept="image/*">
+                        </label>
+                      </div>
+                      
+                      <!-- IBan -->
+                      <label class="flex flex-col w-full gap-2">
+                        <span>IBan</span>
+
+                        <input
+                          type="text"
+                          placeholder=""
+                          class="w-full h-12 p-2 px-4 border rounded-lg border-gray1 focus:outline-none focus:border-mainColor"
+                        />
+                      </label>
+
+                      <!-- Password -->
+                      <label class="flex flex-col w-full gap-2">
+                        <span>Password</span>
+
+                        <input
+                          type="password"
+                          placeholder=""
+                          class="w-full h-12 p-2 px-4 border rounded-lg border-gray1 focus:outline-none focus:border-mainColor"
+                        />
+                      </label>
+
+                      <!-- ID card photo -->
+                      <div class="w-full file-upload-container">
+                        <label class="flex flex-col w-full gap-2">
+                            <span>ID card photo</span>
+                            <div class="flex items-center justify-center w-full h-12 text-gray-600 border border-gray-800 border-dashed rounded-md cursor-pointer bg-gray4">
+                                <span>Upload Image</span>
+                            </div>
+                            <input type="file" class="hidden" accept="image/*">
+                        </label>
+                      </div>
+
+                      <div class="w-full col-span-2 h-72">
+                        <iframe
+                          width="100%"
+                          height="100%"
+                          frameborder="0"
+                          scrolling="no"
+                          marginheight="0"
+                          marginwidth="0"
+                          src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Street,%20Dublin,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                        >
+                          <a href="https://www.gps.ie/"> gps vehicle tracker</a>
+                        </iframe>
+                      </div>
+                      
+                    </div>
+                </div>
+
+                <div class="flex flex-col mt-8">
+                    <h3 class="mb-2 text-xl font-medium">Group & Shift</h3>
+                  <div class="grid grid-cols-1 gap-8 mt-5 lg:grid-cols-2">
+                    <!-- Group -->
+                    <div class="relative flex flex-col w-full gap-3 custom-select">
+                      <span>Group</span>
+                      <button
+                        id="selectButton"
+                        class="relative w-full h-12 px-4 py-2 text-left bg-white border border-gray-300 rounded-md shadow-sm select-button focus:border-mainColor focus:outline-none"
+                        aria-haspopup="listbox"
+                        type="button"
+                      >
+                        <span
+                          id="selectedOption"
+                          class="block truncate selected-option"
+                        >
+                          <!-- Select an option -->
+                        </span>
+                        <span
+                          class="h-4 w-[1px] bg-gray11 absolute right-10 top-1/2 -translate-y-1/2"
+                        ></span>
+                        <span
+                          class="absolute inset-y-0 flex items-center px-2 -translate-y-1/2 pointer-events-none right-2 top-1/2"
+                        >
+                          <!-- Downward arrow icon -->
+                          <svg
+                            class="w-4 h-4 text-gray-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                        </span>
+                      </button>
+
+                      <!-- Dropdown options -->
+                      <ul
+                        id="selectOptions"
+                        class="absolute z-50 hidden w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg select-options top-20"
+                      >
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Cairo
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          London
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Giza
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Paris
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- Branch group -->
+                    <div class="relative flex flex-col w-full gap-3 custom-select">
+                      <span>Branch group</span>
+                      <button
+                        id="selectButton"
+                        class="relative w-full h-12 px-4 py-2 text-left bg-white border border-gray-300 rounded-md shadow-sm select-button focus:border-mainColor focus:outline-none"
+                        aria-haspopup="listbox"
+                        type="button"
+                      >
+                        <span
+                          id="selectedOption"
+                          class="block truncate selected-option"
+                        >
+                          <!-- Select an option -->
+                        </span>
+                        <span
+                          class="h-4 w-[1px] bg-gray11 absolute right-10 top-1/2 -translate-y-1/2"
+                        ></span>
+                        <span
+                          class="absolute inset-y-0 flex items-center px-2 -translate-y-1/2 pointer-events-none right-2 top-1/2"
+                        >
+                          <!-- Downward arrow icon -->
+                          <svg
+                            class="w-4 h-4 text-gray-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                        </span>
+                      </button>
+
+                      <!-- Dropdown options -->
+                      <ul
+                        id="selectOptions"
+                        class="absolute z-50 hidden w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg select-options top-20"
+                      >
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Cairo
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          London
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Giza
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Paris
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- Shifts -->
+                    <div class="relative flex flex-col w-full gap-3 custom-select">
+                      <span>Shifts</span>
+                      <button
+                        id="selectButton"
+                        class="relative w-full h-12 px-4 py-2 text-left bg-white border border-gray-300 rounded-md shadow-sm select-button focus:border-mainColor focus:outline-none"
+                        aria-haspopup="listbox"
+                        type="button"
+                      >
+                        <span
+                          id="selectedOption"
+                          class="block truncate selected-option"
+                        >
+                          <!-- Select an option -->
+                        </span>
+                        <span
+                          class="h-4 w-[1px] bg-gray11 absolute right-10 top-1/2 -translate-y-1/2"
+                        ></span>
+                        <span
+                          class="absolute inset-y-0 flex items-center px-2 -translate-y-1/2 pointer-events-none right-2 top-1/2"
+                        >
+                          <!-- Downward arrow icon -->
+                          <svg
+                            class="w-4 h-4 text-gray-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                        </span>
+                      </button>
+
+                      <!-- Dropdown options -->
+                      <ul
+                        id="selectOptions"
+                        class="absolute z-50 hidden w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg select-options top-20"
+                      >
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Cairo
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          London
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Giza
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Paris
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- Davs off -->
+                    <div class="relative flex flex-col w-full gap-3 custom-select">
+                      <span>Davs off</span>
+                      <button
+                        id="selectButton"
+                        class="relative w-full h-12 px-4 py-2 text-left bg-white border border-gray-300 rounded-md shadow-sm select-button focus:border-mainColor focus:outline-none"
+                        aria-haspopup="listbox"
+                        type="button"
+                      >
+                        <span
+                          id="selectedOption"
+                          class="block truncate selected-option"
+                        >
+                          <!-- Select an option -->
+                        </span>
+                        <span
+                          class="h-4 w-[1px] bg-gray11 absolute right-10 top-1/2 -translate-y-1/2"
+                        ></span>
+                        <span
+                          class="absolute inset-y-0 flex items-center px-2 -translate-y-1/2 pointer-events-none right-2 top-1/2"
+                        >
+                          <!-- Downward arrow icon -->
+                          <svg
+                            class="w-4 h-4 text-gray-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                        </span>
+                      </button>
+
+                      <!-- Dropdown options -->
+                      <ul
+                        id="selectOptions"
+                        class="absolute z-50 hidden w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg select-options top-20"
+                      >
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Cairo
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          London
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Giza
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Paris
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- Job Type -->
+                    <div class="relative flex flex-col w-full gap-3 custom-select">
+                      <span>Job Type</span>
+                      <button
+                        id="selectButton"
+                        class="relative w-full h-12 px-4 py-2 text-left bg-white border border-gray-300 rounded-md shadow-sm select-button focus:border-mainColor focus:outline-none"
+                        aria-haspopup="listbox"
+                        type="button"
+                      >
+                        <span
+                          id="selectedOption"
+                          class="block truncate selected-option"
+                        >
+                          <!-- Select an option -->
+                        </span>
+                        <span
+                          class="h-4 w-[1px] bg-gray11 absolute right-10 top-1/2 -translate-y-1/2"
+                        ></span>
+                        <span
+                          class="absolute inset-y-0 flex items-center px-2 -translate-y-1/2 pointer-events-none right-2 top-1/2"
+                        >
+                          <!-- Downward arrow icon -->
+                          <svg
+                            class="w-4 h-4 text-gray-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                        </span>
+                      </button>
+
+                      <!-- Dropdown options -->
+                      <ul
+                        id="selectOptions"
+                        class="absolute z-50 hidden w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg select-options top-20"
+                      >
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Cairo
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          London
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Giza
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Paris
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- Vehicle Type -->
+                    <div class="relative flex flex-col w-full gap-3 custom-select">
+                      <span>Vehicle Type</span>
+                      <button
+                        id="selectButton"
+                        class="relative w-full h-12 px-4 py-2 text-left bg-white border border-gray-300 rounded-md shadow-sm select-button focus:border-mainColor focus:outline-none"
+                        aria-haspopup="listbox"
+                        type="button"
+                      >
+                        <span
+                          id="selectedOption"
+                          class="block truncate selected-option"
+                        >
+                          <!-- Select an option -->
+                        </span>
+                        <span
+                          class="h-4 w-[1px] bg-gray11 absolute right-10 top-1/2 -translate-y-1/2"
+                        ></span>
+                        <span
+                          class="absolute inset-y-0 flex items-center px-2 -translate-y-1/2 pointer-events-none right-2 top-1/2"
+                        >
+                          <!-- Downward arrow icon -->
+                          <svg
+                            class="w-4 h-4 text-gray-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                        </span>
+                      </button>
+
+                      <!-- Dropdown options -->
+                      <ul
+                        id="selectOptions"
+                        class="absolute z-50 hidden w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg select-options top-20"
+                      >
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Cairo
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          London
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Giza
+                        </li>
+                        <li
+                          class="px-4 py-2 cursor-pointer hover:bg-mainColor hover:text-white"
+                          onclick="selectOption(this)"
+                        >
+                          Paris
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="flex items-center justify-center pt-16">
+                  <button type="button" class="p-3 px-20 text-xl text-white rounded-md bg-blue1">Save</button>
+                </div>
+            </div>
+            </div>
+          </div>
+          <!-- End Drawer -->
+
           <div class="p-6">
             <!-- Navigation Tabs -->
             <div
@@ -393,6 +1101,8 @@
                   <span>Operator Report</span>
                 </a>
                 <button
+                  id="open-drawer"
+                  type="button"
                   class="flex items-center justify-center w-full gap-3 px-4 py-2 text-white rounded-md md:w-48 bg-blue1 border-blue1"
                 >
                   <img src="/src/assets/icons/add-square.svg" alt="" />

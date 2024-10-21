@@ -77,6 +77,56 @@ if (collapsibleSections) {
     });
 }
 
+// ------------------------------------------------------------------------------------------------
+
+// Drawer
+
+// Get elements
+const openDrawerBtn = document.getElementById("open-drawer");
+const closeDrawerBtn = document.getElementById("close-drawer");
+const drawer = document.getElementById("drawer");
+const drawerOverlay = document.getElementById("drawer-overlay");
+
+// Open drawer function
+openDrawerBtn.addEventListener("click", () => {
+    drawer.classList.remove("translate-x-full");
+    drawerOverlay.classList.remove("hidden");
+});
+
+// Close drawer function
+closeDrawerBtn.addEventListener("click", () => {
+    drawer.classList.add("translate-x-full");
+    drawerOverlay.classList.add("hidden");
+});
+
+// Close drawer when clicking outside
+drawerOverlay.addEventListener("click", () => {
+    drawer.classList.add("translate-x-full");
+    drawerOverlay.classList.add("hidden");
+});
+
+
+// ------------------------------------------------------------------------------------------------
+
+// Upload files
+
+document.querySelectorAll('.file-upload-container').forEach(container => {
+    const uploadArea = container.querySelector('div');
+    const fileInput = container.querySelector('input[type="file"]');
+
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            // Show the name of the uploaded file
+            uploadArea.innerHTML = `<span class="text-gray-600">Uploaded: ${file.name}</span>`;
+        } else {
+            // Reset to default text if no file is selected
+            uploadArea.innerHTML = `<span>Upload Image</span>`;
+        }
+    });
+});
+
+
 
 // ------------------------------------------------------------------------------------------------
 

@@ -47,9 +47,6 @@ module.exports = {
                 // yellow
                 yellow1: "#FFEE58"
             },
-            height: {
-                'screen-navbar': 'calc(100vh - 70px)',  // Custom height subtracting navbar height
-            },
         },
     },
     plugins: [],
