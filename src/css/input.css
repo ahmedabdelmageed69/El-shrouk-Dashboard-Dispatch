@@ -66,3 +66,15 @@ body {
 .active {
     background-color: #A30133;
 }
+
+.collapseContent {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.dispatch-tab-active {
+    border-bottom: 1px solid #A30133;
+    color: #A30133;
+    font-weight: 600;
+}

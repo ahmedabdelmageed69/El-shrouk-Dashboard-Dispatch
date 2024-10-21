@@ -27,6 +27,89 @@ if (navbarSelectbox) {
 
 // ------------------------------------------------------------------------------------------------
 
+// Collapse 
+
+// const collapsibleSections = document.querySelectorAll(".collapsible");
+
+// console.log("collapsibleSections :=>", collapsibleSections)
+
+// if (collapsibleSections) {
+//     collapsibleSections.forEach(section => {
+//         const button = section.querySelector(".toggleButton");
+//         const content = section.querySelector(".collapseContent");
+
+//         button.addEventListener("click", () => {
+//             if (content.classList.contains("max-h-0")) {
+//                 // Expand the content
+//                 let scrollHeight = content.scrollHeight;
+//                 content.style.maxHeight = `${scrollHeight}px`;
+//                 content.classList.remove("max-h-0");
+//             } else {
+//                 // Collapse the content
+//                 content.style.maxHeight = "0px";
+//                 content.classList.add("max-h-0");
+//             }
+//         });
+//     });
+// }
+
+const collapsibleSections = document.querySelectorAll(".collapsible");
+
+if (collapsibleSections) {
+    collapsibleSections.forEach(section => {
+        const button = section.querySelector(".toggleButton");
+        const content = section.querySelector(".collapseContent");
+
+        // Set initial maxHeight to 0px
+        content.style.maxHeight = "0px";
+
+        button.addEventListener("click", () => {
+            // If content is collapsed (maxHeight is 0), expand it
+            if (content.style.maxHeight === "0px") {
+                content.style.maxHeight = `${content.scrollHeight}px`;
+                content.classList.remove("max-h-0");
+            } else {
+                // Collapse the content by setting maxHeight back to 0px
+                content.style.maxHeight = "0px";
+                content.classList.add("max-h-0");
+            }
+        });
+    });
+}
+
+
+// ------------------------------------------------------------------------------------------------
+
+// Tabs in dispatcher page
+
+const dispatcherTabs = document.querySelectorAll(".dispatcher-tabs button");
+const dispatchTabsContent = document.querySelectorAll(".dispatcher-tab-content");
+
+dispatcherTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+        dispatcherTabs.forEach((tab) => tab.classList.remove('dispatch-tab-active'));
+        tab.classList.add('dispatch-tab-active');
+
+        const tabContent = document.querySelector(`.dispatcher-tab-content[data-tab="${tab.dataset.tab}"]`);
+        
+
+        // if(tabContent.dataset.tab)
+
+        console.log("tab.dataset.tab", tab.dataset.tab);
+        console.log("tabContent.dataset.tab :", tabContent.dataset.tab)
+
+
+        dispatchTabsContent.forEach((tabContent) => tabContent.classList.add('hidden'));
+
+        tabContent.classList.remove('hidden');
+    });
+})
+
+
+
+
+// ------------------------------------------------------------------------------------------------
+
 // login Slider 
 
 
@@ -701,4 +784,6 @@ const avgWaitingTimeChart = new Chart(ctxWaitingTime, {
     }
 });
 
+
+// ------------------------------------------------------------------------------------------------
 
