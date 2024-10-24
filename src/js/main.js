@@ -82,28 +82,39 @@ if (collapsibleSections) {
 // Drawer
 
 // Get elements
-const openDrawerBtn = document.getElementById("open-drawer");
+const openDrawerBtn = document.querySelectorAll(".open-drawer");
 const closeDrawerBtn = document.getElementById("close-drawer");
 const drawer = document.getElementById("drawer");
 const drawerOverlay = document.getElementById("drawer-overlay");
 
 // Open drawer function
-openDrawerBtn.addEventListener("click", () => {
-    drawer.classList.remove("translate-x-full");
-    drawerOverlay.classList.remove("hidden");
-});
+if (openDrawerBtn) {
+    openDrawerBtn.forEach((item) => {
+        item?.addEventListener("click", () => {
+            drawer.classList.remove("translate-x-full");
+            drawerOverlay.classList.remove("hidden");
+        });
+    })
+    
+}
 
-// Close drawer function
-closeDrawerBtn.addEventListener("click", () => {
-    drawer.classList.add("translate-x-full");
-    drawerOverlay.classList.add("hidden");
-});
 
-// Close drawer when clicking outside
-drawerOverlay.addEventListener("click", () => {
-    drawer.classList.add("translate-x-full");
-    drawerOverlay.classList.add("hidden");
-});
+if (closeDrawerBtn) {
+    // Close drawer function
+    closeDrawerBtn.addEventListener("click", () => {
+        drawer.classList.add("translate-x-full");
+        drawerOverlay.classList.add("hidden");
+    });
+}
+
+if (drawerOverlay) {
+    // Close drawer when clicking outside
+    drawerOverlay.addEventListener("click", () => {
+        drawer.classList.add("translate-x-full");
+        drawerOverlay.classList.add("hidden");
+    });
+}
+
 
 
 // ------------------------------------------------------------------------------------------------
